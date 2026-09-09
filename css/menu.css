@@ -43,10 +43,8 @@ body.menu-page {
 
 /* ---- Sticky Tabs ---- */
 .menu-tabs-wrap {
-  position: fixed;
+  position: sticky;
   top: 68px;
-  left: 0;
-  right: 0;
   z-index: 100;
   background: rgba(20,20,20,0.97);
   backdrop-filter: blur(12px);
@@ -89,7 +87,7 @@ body.menu-page {
 
 /* ---- Menu Main ---- */
 .menu-main {
-  padding: 112px 0 80px;
+  padding: 60px 0 80px;
 }
 
 /* ---- Section ---- */
