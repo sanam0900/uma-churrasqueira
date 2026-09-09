@@ -23,15 +23,22 @@
     btn.addEventListener('click', () => scrollToSection(btn.dataset.target));
   });
 
-  // On page load handle hash — scroll to top first, then after full render go to section
+  // Handle incoming hash from home page cards
+  // Store target, strip hash, then scroll after all images load
   if (window.location.hash) {
     const id = window.location.hash.slice(1);
-    // Immediately jump to top to prevent native browser hash scroll
-    window.scrollTo(0, 0);
-    history.scrollRestoration = 'manual';
-    // Wait for full page render then scroll properly
+    sessionStorage.setItem('menuScrollTarget', id);
+    // Remove hash without triggering scroll
+    history.replaceState(null, '', window.location.pathname);
+  }
+
+  const scrollTarget = sessionStorage.getItem('menuScrollTarget');
+  if (scrollTarget) {
+    sessionStorage.removeItem('menuScrollTarget');
+    // Wait for all images to finish loading before scrolling
     window.addEventListener('load', () => {
-      setTimeout(() => scrollToSection(id), 300);
+      // Extra delay to let layout fully settle
+      setTimeout(() => scrollToSection(scrollTarget), 200);
     });
   }
 
