@@ -16,6 +16,11 @@
     navLinks.classList.toggle('open');
   });
 
+  // Close menu when a nav link is tapped
+  navLinks && navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
   // ---- Set min date on reservation form ----
   const dateInput = document.getElementById('resDate');
   if (dateInput) {
