@@ -21,6 +21,7 @@
   navToggle && navToggle.addEventListener('click', () => {
     navLinks.classList.toggle('open');
     navToggle.classList.toggle('open');
+    navbar.classList.toggle('menu-open');
   });
 
   // Close menu when a nav link is tapped
@@ -28,6 +29,7 @@
     link.addEventListener('click', () => {
       navLinks.classList.remove('open');
       navToggle.classList.remove('open');
+      navbar.classList.remove('menu-open');
     });
   });
 
@@ -36,6 +38,7 @@
     if (navLinks.classList.contains('open')) {
       navLinks.classList.remove('open');
       navToggle.classList.remove('open');
+      navbar.classList.remove('menu-open');
     }
   }, { passive: true });
 
