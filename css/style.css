@@ -1036,17 +1036,25 @@ ul { list-style: none; }
   /* Navbar */
   .navbar { padding: 14px 16px; }
   .nav-links {
-    display: none;
     position: absolute;
     top: 100%;
     left: 0; right: 0;
     background: rgba(20,20,20,0.99);
     flex-direction: column;
-    padding: 20px 16px;
+    padding: 0 16px;
     gap: 4px;
     border-top: 1px solid rgba(255,255,255,0.08);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    display: flex;
+    transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.35s ease;
   }
-  .nav-links.open { display: flex; }
+  .nav-links.open {
+    max-height: 400px;
+    opacity: 1;
+    padding: 20px 16px;
+  }
   .nav-links li { width: 100%; }
   .nav-links a {
     display: block;
