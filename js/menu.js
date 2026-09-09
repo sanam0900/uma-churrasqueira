@@ -26,7 +26,8 @@
       if (!target) return;
       const tabsWrap = document.getElementById('menuTabsWrap');
       const offset = (tabsWrap ? tabsWrap.offsetHeight : 0) + 68 + 8;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      // Use offsetTop (absolute position) not getBoundingClientRect (relative to viewport)
+      const top = target.offsetTop - offset;
       window.scrollTo({ top: top, behavior: 'instant' });
     });
   }
