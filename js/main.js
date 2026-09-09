@@ -77,11 +77,11 @@
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(document.documentElement.clientWidth, window.innerHeight);
   renderer.setClearColor(0x111111, 1);
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+  const camera = new THREE.PerspectiveCamera(60, document.documentElement.clientWidth / window.innerHeight, 0.1, 100);
   camera.position.set(0, 0, 5);
 
   // Fog for depth
@@ -188,15 +188,15 @@
   // ---- Mouse parallax ----
   let mouseX = 0, mouseY = 0;
   document.addEventListener('mousemove', e => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseX = (e.clientX / document.documentElement.clientWidth - 0.5) * 2;
     mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
   });
 
   // ---- Resize ----
   window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = document.documentElement.clientWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(document.documentElement.clientWidth, window.innerHeight);
   });
 
   // ---- Animation Loop ----
