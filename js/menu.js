@@ -6,8 +6,9 @@
   const sections = document.querySelectorAll('.menu-section');
 
   function getOffset() {
+    const navbar = document.getElementById('navbar');
     const tabsWrap = document.getElementById('menuTabsWrap');
-    return (tabsWrap ? tabsWrap.offsetHeight : 0) + 68 + 8;
+    return (navbar ? navbar.offsetHeight : 68) + (tabsWrap ? tabsWrap.offsetHeight : 52) + 12;
   }
 
   function scrollToSection(id) {
@@ -22,13 +23,17 @@
     btn.addEventListener('click', () => scrollToSection(btn.dataset.target));
   });
 
-  // On page load, if URL has a hash scroll to it correctly (offset for sticky bars)
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      const id = window.location.hash.slice(1);
-      setTimeout(() => scrollToSection(id), 100);
-    }
-  });
+  // On page load handle hash — scroll to top first, then after full render go to section
+  if (window.location.hash) {
+    const id = window.location.hash.slice(1);
+    // Immediately jump to top to prevent native browser hash scroll
+    window.scrollTo(0, 0);
+    history.scrollRestoration = 'manual';
+    // Wait for full page render then scroll properly
+    window.addEventListener('load', () => {
+      setTimeout(() => scrollToSection(id), 300);
+    });
+  }
 
   // Scroll → highlight active tab
   const observer = new IntersectionObserver((entries) => {
