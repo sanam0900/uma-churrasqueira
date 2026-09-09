@@ -3,6 +3,12 @@
    =========================== */
 
 (function () {
+  // Force page to top on load (prevents Elfsight or hash from auto-scrolling)
+  if (!window.location.hash) {
+    window.scrollTo(0, 0);
+  }
+  history.scrollRestoration = 'manual';
+
   // ---- Navbar scroll ----
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
