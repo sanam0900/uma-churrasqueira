@@ -5,16 +5,29 @@
   const tabs = document.querySelectorAll('.tab-btn');
   const sections = document.querySelectorAll('.menu-section');
 
-  // Click tab → scroll to section (offset for sticky navbar + tab bar)
+  function getOffset() {
+    const tabsWrap = document.getElementById('menuTabsWrap');
+    return (tabsWrap ? tabsWrap.offsetHeight : 0) + 68 + 8;
+  }
+
+  function scrollToSection(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - getOffset();
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  // Click tab → scroll to section
   tabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = document.getElementById(btn.dataset.target);
-      if (!target) return;
-      const tabsWrap = document.getElementById('menuTabsWrap');
-      const offset = (tabsWrap ? tabsWrap.offsetHeight : 0) + 68 + 8;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
-    });
+    btn.addEventListener('click', () => scrollToSection(btn.dataset.target));
+  });
+
+  // On page load, if URL has a hash scroll to it correctly (offset for sticky bars)
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+      const id = window.location.hash.slice(1);
+      setTimeout(() => scrollToSection(id), 100);
+    }
   });
 
   // Scroll → highlight active tab
@@ -25,7 +38,6 @@
         tabs.forEach(btn => {
           btn.classList.toggle('active', btn.dataset.target === id);
         });
-        // Scroll active tab into view in the tab strip
         const activeTab = document.querySelector(`.tab-btn[data-target="${id}"]`);
         if (activeTab) {
           activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
