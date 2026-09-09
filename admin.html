@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Uma Churrasqueira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal: #2D7D79;
+      --teal-dark: #1e5a56;
+      --gold: #D4A017;
+      --charcoal: #1A1A1A;
+      --cream: #F5EDE3;
+      --blush: #E8D5C4;
+      --white: #fff;
+      --pending: #f59e0b;
+      --approved: #10b981;
+      --rejected: #ef4444;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Lato', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: #111; color: #e0e0e0; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+
+    /* LOGIN SCREEN */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(160deg, #0d1a18 0%, #1a2a28 100%);
+    }
+    .login-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 48px 44px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-logo { font-size: 2.5rem; margin-bottom: 8px; }
+    .login-box h1 {
+      font-family: var(--font-serif);
+      color: var(--white);
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+    .login-box p { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 32px; }
+    .login-box input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      color: var(--white);
+      font-size: 1rem;
+      font-family: var(--font-sans);
+      outline: none;
+      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+    }
+    .login-box input:focus { border-color: var(--gold); }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      color: var(--charcoal);
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-btn:hover { background: #f0c040; }
+    .login-error {
+      margin-top: 14px;
+      color: #ff8888;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    /* ADMIN LAYOUT */
+    #adminApp { display: none; }
+
+    .admin-header {
+      background: rgba(26,26,26,0.98);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .admin-brand {
+      font-family: var(--font-serif);
+      color: var(--white);
+      font-size: 1.1rem;
+    }
+    .admin-brand span { color: var(--gold); }
+    .admin-meta { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+    .logout-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.5);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-family: var(--font-sans);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .logout-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .admin-main { padding: 40px 32px; max-width: 1300px; margin: 0 auto; }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 16px 24px;
+      flex: 1;
+      min-width: 140px;
+    }
+    .stat-pill .sp-num {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .stat-pill .sp-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+    .stat-pill.pending .sp-num  { color: var(--pending); }
+    .stat-pill.approved .sp-num { color: var(--approved); }
+    .stat-pill.rejected .sp-num { color: var(--rejected); }
+    .stat-pill.total .sp-num    { color: var(--gold); }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.78rem;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active { background: var(--teal); border-color: var(--teal); color: var(--white); }
+    .filter-btn:hover:not(.active) { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+    .filter-date {
+      margin-left: auto;
+      padding: 8px 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .filter-date:focus { border-color: var(--gold); }
+
+    .refresh-btn {
+      padding: 8px 18px;
+      background: rgba(45,125,121,0.2);
+      border: 1px solid var(--teal);
+      color: #7dd8d4;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .refresh-btn:hover { background: rgba(45,125,121,0.4); }
+
+    /* Demo banner */
+    .demo-banner {
+      background: rgba(212,160,23,0.12);
+      border: 1px solid rgba(212,160,23,0.3);
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* Reservations table */
+    .res-table-wrap {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .res-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .res-table thead tr {
+      background: rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .res-table th {
+      padding: 14px 16px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-align: left;
+    }
+    .res-table td {
+      padding: 16px 16px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: top;
+    }
+    .res-table tbody tr:last-child td { border-bottom: none; }
+    .res-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+    .res-name { font-weight: 700; color: var(--white); }
+    .res-phone { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+    .res-notes { font-size: 0.78rem; color: rgba(255,255,255,0.4); font-style: italic; margin-top: 4px; }
+
+    /* Status badge */
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-pending  { background: rgba(245,158,11,0.15); color: var(--pending);  border: 1px solid rgba(245,158,11,0.3); }
+    .badge-approved { background: rgba(16,185,129,0.15); color: var(--approved); border: 1px solid rgba(16,185,129,0.3); }
+    .badge-rejected { background: rgba(239,68,68,0.15);  color: var(--rejected); border: 1px solid rgba(239,68,68,0.3);  }
+
+    /* Action cell */
+    .action-cell { min-width: 220px; }
+    .action-comment {
+      width: 100%;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      resize: none;
+      outline: none;
+      margin-bottom: 8px;
+    }
+    .action-comment:focus { border-color: var(--gold); }
+    .action-comment::placeholder { color: rgba(255,255,255,0.25); }
+
+    .action-btns { display: flex; gap: 8px; }
+    .approve-btn, .reject-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .approve-btn { background: var(--approved); color: #fff; }
+    .reject-btn  { background: var(--rejected);  color: #fff; }
+    .approve-btn:hover, .reject-btn:hover { opacity: 0.85; }
+    .approve-btn:disabled, .reject-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .admin-comment-display {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 24px;
+      color: rgba(255,255,255,0.3);
+    }
+    .empty-state .es-icon { font-size: 3rem; margin-bottom: 16px; }
+    .empty-state p { font-size: 0.9rem; }
+
+    /* Loading */
+    .loading-state {
+      text-align: center;
+      padding: 60px 24px;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .admin-main { padding: 24px 16px; }
+      .admin-header { padding: 14px 16px; }
+      .res-table thead { display: none; }
+      .res-table, .res-table tbody, .res-table tr, .res-table td { display: block; width: 100%; }
+      .res-table td { padding: 8px 16px; border-bottom: none; }
+      .res-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.07); padding: 12px 0; }
+      .action-cell { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">🔥</div>
+      <h1>Uma Churrasqueira</h1>
+      <p>Restaurant Admin Portal</p>
+      <input type="password" id="pwInput" placeholder="Enter admin password" />
+      <button class="login-btn" id="loginBtn">Sign In</button>
+      <p class="login-error" id="loginError">Incorrect password. Please try again.</p>
+    </div>
+  </div>
+
+  <!-- ADMIN APP -->
+  <div id="adminApp">
+    <header class="admin-header">
+      <div>
+        <div class="admin-brand">Uma <span>Churrasqueira</span> — Admin</div>
+        <div class="admin-meta" id="adminDate"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" style="font-size:0.78rem;color:rgba(255,255,255,0.35);letter-spacing:0.05em;">← View Website</a>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <!-- Stats -->
+      <div class="stats-bar">
+        <div class="stat-pill total">
+          <div class="sp-num" id="statTotal">0</div>
+          <div class="sp-label">Total</div>
+        </div>
+        <div class="stat-pill pending">
+          <div class="sp-num" id="statPending">0</div>
+          <div class="sp-label">Pending</div>
+        </div>
+        <div class="stat-pill approved">
+          <div class="sp-num" id="statApproved">0</div>
+          <div class="sp-label">Approved</div>
+        </div>
+        <div class="stat-pill rejected">
+          <div class="sp-num" id="statRejected">0</div>
+          <div class="sp-label">Rejected</div>
+        </div>
+      </div>
+
+      <!-- Demo banner -->
+      <div class="demo-banner" id="demoBanner">
+        <strong>Demo Mode:</strong> No Google Apps Script URL is configured yet. Showing sample reservations below. Once you connect your Google Sheet, real bookings will appear here. See <strong>SETUP.md</strong> for instructions.
+      </div>
+
+      <!-- Filters -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Pending">Pending</button>
+        <button class="filter-btn" data-filter="Approved">Approved</button>
+        <button class="filter-btn" data-filter="Rejected">Rejected</button>
+        <input type="date" class="filter-date" id="filterDate" title="Filter by date" />
+        <button class="refresh-btn" id="refreshBtn">⟳ Refresh</button>
+      </div>
+
+      <!-- Table -->
+      <div class="res-table-wrap">
+        <table class="res-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Guest</th>
+              <th>Date &amp; Time</th>
+              <th>Guests</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="resTableBody">
+            <tr><td colspan="6" class="loading-state">Loading reservations...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Uma Churrasqueira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+</head>
+<body class="menu-page">
+
+  <!-- NAV -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-brand">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;color:inherit;">
+        <span class="nav-flame">🔥</span>
+        <span class="nav-name">Uma Churrasqueira</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#reviews">Reviews</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle">&#9776;</button>
+  </nav>
+
+  <!-- MENU HERO -->
+  <div class="menu-hero">
+    <div class="menu-hero-content">
+      <span class="section-label light">Uma Churrasqueira</span>
+      <h1 class="menu-hero-title">Our Menu</h1>
+      <p class="menu-hero-sub">Barbecue &amp; Beer · Portugal &amp; Nepal</p>
+    </div>
+  </div>
+
+  <!-- STICKY TABS -->
+  <div class="menu-tabs-wrap" id="menuTabsWrap">
+    <div class="menu-tabs" id="menuTabs">
+      <button class="tab-btn active" data-target="starters">Starters</button>
+      <button class="tab-btn" data-target="grilled">Grilled Meats</button>
+      <button class="tab-btn" data-target="chicken-menu">Chicken Menu</button>
+      <button class="tab-btn" data-target="pork-menu">Pork Menu</button>
+      <button class="tab-btn" data-target="curry">Curry</button>
+      <button class="tab-btn" data-target="fish">Fish</button>
+      <button class="tab-btn" data-target="sides">Sides</button>
+      <button class="tab-btn" data-target="drinks">Drinks</button>
+    </div>
+  </div>
+
+  <main class="menu-main">
+    <div class="container">
+
+      <!-- ================================================
+           STARTERS
+           ================================================ -->
+      <section class="menu-section" id="starters">
+        <div class="menu-section-header">
+          <span class="menu-category-icon">🥟</span>
+          <h2>Starters</h2>
+        </div>
+        <div class="menu-grid">
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/papad.png" alt="Papad" loading="lazy" />
+              <span class="dish-price-badge">€0.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>Papad / Papari <span class="dish-qty">(1 uni.)</span></h3>
+              <p>Thin, crispy snack made from lentil or chickpea flour</p>
+            </div>
+          </div>
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/samosa.png" alt="Chicken Samosa" loading="lazy" />
+              <span class="dish-price-badge">€2.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>Chicken Samosa <span class="dish-qty">(1 uni.)</span></h3>
+              <p>Handmade crispy pastry stuffed with delicately spiced minced chicken</p>
+            </div>
+          </div>
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/momo.png" alt="Chicken Momo" loading="lazy" />
+              <span class="dish-price-badge">€6.50</span>
+              <span class="dish-tag dish-tag-photo">Nepali Classic</span>
+            </div>
+            <div class="dish-body">
+              <h3>Chicken Momo <span class="dish-qty">(10 uni.)</span></h3>
+              <p>Traditional Nepali steamed dumplings filled with seasoned minced chicken</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/kalamari.jpeg" alt="Calamari Rings" loading="lazy" />
+              <span class="dish-price-badge">€3.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>Calamari Rings <span class="dish-qty">(7 uni.)</span></h3>
+              <p>Crispy fried squid rings, golden and light</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Chicken Nuggets.png" alt="Chicken Nuggets" loading="lazy" />
+              <span class="dish-price-badge">€3.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>Chicken Nuggets <span class="dish-qty">(7 uni.)</span></h3>
+              <p>Crispy breaded chicken pieces</p>
+            </div>
+          </div>
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=600&q=80" alt="Pasteis de Bacalhau" loading="lazy" />
+              <span class="dish-price-badge">€3.50</span>
+              <span class="dish-tag dish-tag-photo">Portuguese Classic</span>
+            </div>
+            <div class="dish-body">
+              <h3>Pasteis de Bacalhau <span class="dish-qty">(2 uni.)</span></h3>
+              <p>Traditional Portuguese codfish cakes — crispy outside, tender inside</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Sadheko Bhatmas.png" alt="Sadheko Bhatmas" loading="lazy" />
+              <span class="dish-price-badge">€3.00</span>
+              <span class="dish-tag dish-tag-photo">Nepali Classic</span>
+            </div>
+            <div class="dish-body">
+              <h3>Sadheko Bhatmas</h3>
+              <p>Roasted soybeans mixed with onion, tomato, garlic, ginger and spices</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================
+           GRILLED MEATS
+           ================================================ -->
+      <section class="menu-section" id="grilled">
+        <div class="menu-section-header">
+          <span class="menu-category-icon">🔥</span>
+          <h2>Grilled Meats <span class="menu-section-note">— Carnes Grelhadas</span></h2>
+          <p class="menu-section-sub">No sides included · Sem acompanhamentos</p>
+        </div>
+        <div class="menu-grid">
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/Inteiro Frango Assado.jpg" alt="Whole Grilled Chicken" loading="lazy" />
+              <span class="dish-price-badge">€13.00</span>
+              <span class="dish-tag dish-tag-photo">Best Seller</span>
+            </div>
+            <div class="dish-body">
+              <h3>Inteiro Frango Assado</h3>
+              <p>Full chicken — charcoal roasted to perfection over open flame</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Inteiro Frango Assado.jpg" alt="Half Grilled Chicken" loading="lazy" />
+              <span class="dish-price-badge">€6.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>1/2 Frango Assado</h3>
+              <p>Half chicken grill — smoky charcoal flavour</p>
+            </div>
+          </div>
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/Piano.jpg" alt="Pork Ribs" loading="lazy" />
+              <span class="dish-price-badge">€17.00</span>
+              <span class="dish-tag dish-tag-photo">Chef's Pick</span>
+            </div>
+            <div class="dish-body">
+              <h3>Piano Inteiro</h3>
+              <p>Full rack of pork ribs — slow-grilled until tender and caramelised</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Salsicha.jpg" alt="Pork Sausage" loading="lazy" />
+              <span class="dish-price-badge">€9.00</span>
+            </div>
+            <div class="dish-body">
+              <h3>Um prato Salsicha <span class="dish-qty">(4 uni.)</span></h3>
+              <p>1 portion of grilled pork sausages</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Salsicha.jpg" alt="Pork Sausage Half" loading="lazy" />
+              <span class="dish-price-badge">€4.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>1/2 prato Salsicha <span class="dish-qty">(2 uni.)</span></h3>
+              <p>½ portion of grilled pork sausages</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Entremeada.jpg" alt="Pork Belly" loading="lazy" />
+              <span class="dish-price-badge">€9.00</span>
+            </div>
+            <div class="dish-body">
+              <h3>Um prato Entremeada <span class="dish-qty">(4 uni.)</span></h3>
+              <p>1 portion of charcoal-grilled pork belly</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Entremeada.jpg" alt="Pork Belly Half" loading="lazy" />
+              <span class="dish-price-badge">€4.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>1/2 prato Entremeada <span class="dish-qty">(2 uni.)</span></h3>
+              <p>½ portion of charcoal-grilled pork belly</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================
+           CHICKEN MENU
+           ================================================ -->
+      <section class="menu-section" id="chicken-menu">
+        <div class="menu-section-header">
+          <span class="menu-category-icon">🍗</span>
+          <h2>Chicken Menu</h2>
+          <p class="menu-section-sub">Choose 1 or 2 sides: Rice, Homemade Fries, or Fresh Salad</p>
+        </div>
+        <div class="menu-grid">
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Inteiro Frango Assado.jpg" alt="Full Chicken 1 side" loading="lazy" />
+              <span class="dish-price-badge">€16.00</span>
+            </div>
+            <div class="dish-body">
+              <h3>Inteiro Frango Assado</h3>
+              <p>Full chicken grill + 1 side included</p>
+            </div>
+          </div>
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/Inteiro Frango Assado.jpg" alt="Full Chicken 2 sides" loading="lazy" />
+              <span class="dish-price-badge">€19.00</span>
+              <span class="dish-tag dish-tag-photo">Best Value</span>
+            </div>
+            <div class="dish-body">
+              <h3>Inteiro Frango Assado</h3>
+              <p>Full chicken grill + 2 sides included</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Inteiro Frango Assado.jpg" alt="Half Chicken" loading="lazy" />
+              <span class="dish-price-badge">€8.00</span>
+            </div>
+            <div class="dish-body">
+              <h3>1/2 Frango Assado</h3>
+              <p>Half chicken grill + 1 side included</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Inteiro Frango Assado.jpg" alt="Half Chicken 2 sides" loading="lazy" />
+              <span class="dish-price-badge">€9.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>1/2 Frango Assado</h3>
+              <p>Half chicken grill + 2 sides included</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Inteiro Frango Assado.jpg" alt="Quarter Chicken" loading="lazy" />
+              <span class="dish-price-badge">€7.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>1/4 Frango Assado</h3>
+              <p>Quarter chicken grill + 2 sides included</p>
+            </div>
+          </div>
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/Inteiro Frango Assado.jpg" alt="Frango Zambeziana" loading="lazy" />
+              <span class="dish-price-badge">€21.00</span>
+              <span class="dish-tag dish-tag-photo">Signature Dish</span>
+            </div>
+            <div class="dish-body">
+              <h3>Frango à Zambeziana</h3>
+              <p>Grilled chicken mixed with rich coconut sauce + 2 sides included</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================
+           PORK MENU
+           ================================================ -->
+      <section class="menu-section" id="pork-menu">
+        <div class="menu-section-header">
+          <span class="menu-category-icon">🥩</span>
+          <h2>Pork Menu</h2>
+          <p class="menu-section-sub">Choose 2 sides: Rice, Homemade Fries, or Fresh Salad</p>
+        </div>
+        <div class="menu-grid">
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/Piano.jpg" alt="Half Ribs" loading="lazy" />
+              <span class="dish-price-badge">€11.50</span>
+              <span class="dish-tag dish-tag-photo">Popular</span>
+            </div>
+            <div class="dish-body">
+              <h3>1/2 Piano Menu</h3>
+              <p>Half rack pork ribs + 2 sides included</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Salsicha.jpg" alt="Sausage Menu" loading="lazy" />
+              <span class="dish-price-badge">€10.00</span>
+            </div>
+            <div class="dish-body">
+              <h3>Menu Salsicha <span class="dish-qty">(3 uni.)</span></h3>
+              <p>3 grilled pork sausages + 2 sides included</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/Entremeada.jpg" alt="Pork Belly Menu" loading="lazy" />
+              <span class="dish-price-badge">€10.00</span>
+            </div>
+            <div class="dish-body">
+              <h3>Menu Entremeada <span class="dish-qty">(2 uni.)</span></h3>
+              <p>2 pork belly pieces + 2 sides included</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================
+           CURRY
+           ================================================ -->
+      <section class="menu-section" id="curry">
+        <div class="menu-section-header">
+          <span class="menu-category-icon">🍛</span>
+          <h2>Curry / Caril</h2>
+          <p class="menu-section-sub">Our curry is served with rice · Caril é servido com arroz</p>
+        </div>
+        <div class="menu-grid">
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/chicekncurry.png" alt="Chicken Curry" loading="lazy" />
+              <span class="dish-price-badge">€11.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>Caril de Frango</h3>
+              <p>Chicken Curry — slow-cooked, aromatic spices, served with rice</p>
+            </div>
+          </div>
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/prawncurry.png" alt="Prawn Curry" loading="lazy" />
+              <span class="dish-price-badge">€13.50</span>
+              <span class="dish-tag dish-tag-photo">Popular</span>
+            </div>
+            <div class="dish-body">
+              <h3>Caril de Camarão</h3>
+              <p>Prawn Curry — juicy prawns in a rich spiced sauce, served with rice</p>
+            </div>
+          </div>
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/prawncurry.png" alt="Prawn Coconut Curry" loading="lazy" />
+              <span class="dish-price-badge">€14.00</span>
+              <span class="dish-tag dish-tag-photo">Chef's Pick</span>
+            </div>
+            <div class="dish-body">
+              <h3>Caril de Camarão com molho de coco</h3>
+              <p>Prawn Curry with velvety coconut sauce — served with rice</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================
+           FISH
+           ================================================ -->
+      <section class="menu-section" id="fish">
+        <div class="menu-section-header">
+          <span class="menu-category-icon">🐟</span>
+          <h2>Fish / Peixes</h2>
+          <p class="menu-section-sub">Choose 1 side: Rice, Homemade Fries, Fresh Salad or Boiled Veggies</p>
+        </div>
+        <div class="menu-grid">
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80" alt="Grilled Salmon" loading="lazy" />
+              <span class="dish-price-badge">€13.50</span>
+              <span class="dish-tag dish-tag-photo">Popular</span>
+            </div>
+            <div class="dish-body">
+              <h3>Salmão Grelhada</h3>
+              <p>Grilled Salmon fillet + 1 side included</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&q=80" alt="Grilled Dourada" loading="lazy" />
+              <span class="dish-price-badge">€12.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>Dourada Grelhada</h3>
+              <p>Grilled Sea Bream (Dourada) + 1 side included</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================
+           SIDE DISHES
+           ================================================ -->
+      <section class="menu-section" id="sides">
+        <div class="menu-section-header">
+          <span class="menu-category-icon">🥗</span>
+          <h2>Side Dishes</h2>
+        </div>
+        <div class="menu-grid">
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&q=80" alt="Green Salad" loading="lazy" />
+              <span class="dish-price-badge">€3.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>Salada Verde</h3>
+              <p>Fresh green salad</p>
+            </div>
+          </div>
+
+          <div class="dish-card featured">
+            <div class="dish-photo">
+              <img src="pics/Frango Salada.png" alt="Chicken Salad" loading="lazy" />
+              <span class="dish-price-badge">€9.50</span>
+            </div>
+            <div class="dish-body">
+              <h3>Frango Salada</h3>
+              <p>Chicken salad — grilled chicken strips over fresh greens</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="https://images.unsplash.com/photo-1536304993881-ff86e0c9ef1d?w=600&q=80" alt="Rice" loading="lazy" />
+              <span class="dish-price-badge">€3.00</span>
+            </div>
+            <div class="dish-body">
+              <h3>Arroz</h3>
+              <p>Fluffy steamed white rice</p>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <div class="dish-photo">
+              <img src="pics/btata.png" alt="Homemade Fries" loading="lazy" />
+              <span class="dish-price-badge">€3.00</span>
+            </div>
+            <div class="dish-body">
+              <h3>Batata Fritas</h3>
+              <p>Homemade Fries — crispy, golden, hand-cut</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================
+           DRINKS — compact cards, no photos
+           ================================================ -->
+      <section class="menu-section" id="drinks">
+        <div class="menu-section-header">
+          <span class="menu-category-icon">🍺</span>
+          <h2>Drinks / Bebidas</h2>
+        </div>
+
+        <h3 class="drinks-subheading">Soft Drinks &amp; Non-Alcoholic</h3>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>Soft Drinks / Refrigerants</h3><span class="dish-price">€1.80</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Água 50cl (Still Water)</h3><span class="dish-price">€1.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Pedras (Sparkling Water)</h3><span class="dish-price">€2.20</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Compal</h3><span class="dish-price">€2.20</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Red Bull</h3><span class="dish-price">€2.70</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Somersby</h3><span class="dish-price">€2.80</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Ginger Ale</h3><span class="dish-price">€2.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Café</h3><span class="dish-price">€0.80</span></div></div>
+        </div>
+
+        <h3 class="drinks-subheading">🍺 Cerveja / Beer</h3>
+        <p class="drinks-subheading-note">Draft Beer — Pressão</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>Superbock 1L Jar</h3><span class="dish-price">€6.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Superbock Caneca 50cl</h3><span class="dish-price">€3.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Superbock Tulipa 35cl</h3><span class="dish-price">€2.70</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Superbock Imperial 20cl</h3><span class="dish-price">€1.60</span></div></div>
+        </div>
+        <p class="drinks-subheading-note" style="margin-top:20px;">Bottled Beer (Garrafa) 33cl</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>Sagres</h3><span class="dish-price">€2.00</span></div></div>
+          <div class="dish-card compact featured"><div class="dish-body"><h3>Lukla <span class="dish-tag inline">Nepali</span></h3><span class="dish-price">€2.70</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Superbock Preta</h3><span class="dish-price">€2.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Superbock sem álcool (0%)</h3><span class="dish-price">€2.50</span></div></div>
+        </div>
+
+        <h3 class="drinks-subheading">🍷 Vinho / Wine</h3>
+        <p class="drinks-subheading-note">Tasa de Vinho — House Wine</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>Vinho 1L Jar</h3><span class="dish-price">€6.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Vinho ½L Jar</h3><span class="dish-price">€3.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Copo de Vinho (1 cup)</h3><span class="dish-price">€1.80</span></div></div>
+        </div>
+        <p class="drinks-subheading-note" style="margin-top:20px;">Garrafa de Vinho — Bottled Wine (750ml / 350ml)</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>Esteva (Tinto/Branco)</h3><span class="dish-price">€14.50 / €7.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Monte Velho</h3><span class="dish-price">€14.00 / €7.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Borba</h3><span class="dish-price">€11.50 / €6.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Porta da Ravessa</h3><span class="dish-price">€10.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Rendeiro</h3><span class="dish-price">€10.00 / €5.00</span></div></div>
+        </div>
+        <p class="drinks-subheading-note" style="margin-top:20px;">Vinho Verde</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>Casal Gracia (750ml)</h3><span class="dish-price">€14.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Gazela Verde (750ml)</h3><span class="dish-price">€14.00</span></div></div>
+        </div>
+        <p class="drinks-subheading-note" style="margin-top:20px;">Vinho Rosé</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>Mateus Rose (750ml)</h3><span class="dish-price">€13.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Mateus Rose (375ml)</h3><span class="dish-price">€7.00</span></div></div>
+        </div>
+
+        <h3 class="drinks-subheading">🥃 Spirits</h3>
+        <p class="drinks-subheading-note">Brandy</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>Macieira</h3><span class="dish-price">€3.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Brandy Croft</h3><span class="dish-price">€3.50</span></div></div>
+        </div>
+        <p class="drinks-subheading-note" style="margin-top:20px;">Whiskey</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>William Lawson's</h3><span class="dish-price">€3.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Cutty Sark</h3><span class="dish-price">€3.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Red Label</h3><span class="dish-price">€3.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>The Famous Grouse</h3><span class="dish-price">€4.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Jameson</h3><span class="dish-price">€4.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Jack Daniels</h3><span class="dish-price">€5.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Black Label</h3><span class="dish-price">€6.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Chivas Regal</h3><span class="dish-price">€6.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Double Black</h3><span class="dish-price">€6.50</span></div></div>
+        </div>
+        <p class="drinks-subheading-note" style="margin-top:20px;">Rum</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact featured"><div class="dish-body"><h3>Khukuri Rum <span class="dish-tag inline">Nepali</span></h3><span class="dish-price">€5.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Captain Morgan</h3><span class="dish-price">€5.00</span></div></div>
+        </div>
+        <p class="drinks-subheading-note" style="margin-top:20px;">Liquore &amp; Others</p>
+        <div class="menu-grid menu-grid-sm">
+          <div class="dish-card compact"><div class="dish-body"><h3>Licor Beirão</h3><span class="dish-price">€3.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Baileys Irish Cream</h3><span class="dish-price">€3.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Tequila Sierra Shot</h3><span class="dish-price">€2.00</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Aguardente Shot</h3><span class="dish-price">€1.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>CRF</h3><span class="dish-price">€1.50</span></div></div>
+          <div class="dish-card compact"><div class="dish-body"><h3>Gordon's Gin &amp; Tonic</h3><span class="dish-price">€7.50</span></div></div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+<footer class="footer" style="padding-top:40px;">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;">
+        <p>&copy; 2026 Uma Churrasqueira · +351 932 313 032 · <a href="index.html" style="color:var(--gold)">Back to Home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.querySelector('.nav-links');
+    navToggle && navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  </script>
+</body>
+</html>

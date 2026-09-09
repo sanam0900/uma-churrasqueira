@@ -1,0 +1,474 @@
+/* ============================================================
+   menu.css — Menu page styles
+   ============================================================ */
+
+body.menu-page {
+  background: var(--charcoal);
+}
+
+/* ---- Menu Hero ---- */
+.menu-hero {
+  background: linear-gradient(160deg, #111 0%, #1e2a28 50%, #111 100%);
+  padding: 160px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(212,160,23,0.12), transparent 60%);
+}
+
+.menu-hero-content { position: relative; z-index: 1; }
+
+.menu-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  color: var(--white);
+  margin: 12px 0 16px;
+  line-height: 1;
+}
+
+.menu-hero-sub {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+}
+
+/* ---- Sticky Tabs ---- */
+.menu-tabs-wrap {
+  position: sticky;
+  top: 68px;
+  z-index: 100;
+  background: rgba(20,20,20,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.menu-tabs-wrap::-webkit-scrollbar { display: none; }
+
+.menu-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 0 24px;
+  white-space: nowrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tab-btn {
+  padding: 18px 20px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+
+.tab-btn:hover { color: rgba(255,255,255,0.8); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ---- Menu Main ---- */
+.menu-main {
+  padding: 60px 0 80px;
+}
+
+/* ---- Section ---- */
+.menu-section {
+  margin-bottom: 80px;
+  scroll-margin-top: 130px;
+}
+
+.menu-section-header {
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.menu-category-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.menu-section-header h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: var(--white);
+  font-weight: 900;
+}
+
+.menu-section-note {
+  font-size: 0.6em;
+  color: rgba(255,255,255,0.4);
+  font-weight: 400;
+}
+
+.menu-section-sub {
+  font-size: 0.85rem;
+  color: var(--gold);
+  margin-top: 8px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Drink sub-headings ---- */
+.drinks-subheading {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--white);
+  margin: 36px 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.drinks-subheading-note {
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* ---- Dish Grid ---- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.menu-grid-sm {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+/* ---- Photo Dish Card ---- */
+.dish-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  transform-style: preserve-3d;
+  cursor: default;
+}
+
+.dish-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,160,23,0.2);
+  border-color: rgba(212,160,23,0.25);
+}
+
+/* Photo area */
+.dish-photo {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background: #1a2520;
+  flex-shrink: 0;
+}
+
+.dish-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.dish-card:hover .dish-photo img {
+  transform: scale(1.07);
+}
+
+/* Gradient overlay on photo */
+.dish-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(20,20,20,0.7), transparent);
+  pointer-events: none;
+}
+
+/* Price badge floated on photo */
+.dish-photo .dish-price-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(20,20,20,0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212,160,23,0.5);
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 50px;
+  z-index: 2;
+}
+
+/* Tag badge on photo */
+.dish-photo .dish-tag-photo {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  z-index: 2;
+}
+
+/* Info area */
+.dish-body {
+  padding: 18px 20px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dish-body h3 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--white);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.dish-body p {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.55;
+}
+
+/* Featured card accent */
+.dish-card.featured {
+  border-color: rgba(45,125,121,0.35);
+}
+.dish-card.featured:hover {
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(45,125,121,0.5);
+  border-color: rgba(45,125,121,0.6);
+}
+
+/* Compact card (drinks/spirits — no photo) */
+.dish-card.compact {
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 18px;
+  gap: 0;
+}
+
+.dish-card.compact .dish-body {
+  padding: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.dish-card.compact .dish-body h3 {
+  font-size: 0.88rem;
+  margin-bottom: 0;
+}
+
+.dish-qty {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  font-weight: 400;
+}
+
+.dish-tag {
+  display: inline-block;
+  background: rgba(212,160,23,0.2);
+  border: 1px solid rgba(212,160,23,0.4);
+  color: var(--gold);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 50px;
+}
+
+.dish-tag.inline { margin-left: 6px; }
+
+/* Standalone price (compact cards) */
+.dish-price {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ---- Reserve CTA Banner ---- */
+.menu-cta-banner {
+  background: linear-gradient(135deg, var(--teal-dark) 0%, #1a2a28 100%);
+  padding: 80px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,160,23,0.1), transparent 60%);
+}
+
+.menu-cta-banner h2 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--white);
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.menu-cta-banner p {
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 32px;
+  font-size: 1rem;
+  position: relative;
+}
+
+.menu-cta-banner .btn { position: relative; }
+
+/* ============================================================
+   RESPONSIVE — menu page
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hero */
+  .menu-hero {
+    padding: 120px 20px 60px;
+  }
+
+  /* Sticky tabs — make sure they're easily tappable */
+  .menu-tabs-wrap {
+    top: 60px;
+  }
+
+  .tab-btn {
+    padding: 16px 14px;
+    font-size: 0.72rem;
+    min-height: 48px;
+  }
+
+  /* Sections */
+  .menu-section {
+    margin-bottom: 56px;
+    scroll-margin-top: 116px;
+  }
+
+  /* Grid — single column on mobile */
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .menu-grid-sm {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* Photo cards — slightly shorter image */
+  .dish-photo {
+    height: 180px;
+  }
+
+  /* Compact drink cards — full width, bigger tap target */
+  .dish-card.compact {
+    padding: 14px 16px;
+    min-height: 48px;
+  }
+
+  /* CTA banner */
+  .menu-cta-banner {
+    padding: 56px 20px;
+  }
+
+  .menu-cta-banner h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hero */
+  .menu-hero {
+    padding: 100px 16px 48px;
+  }
+
+  /* Tabs — tighter padding but still tappable */
+  .tab-btn {
+    padding: 14px 10px;
+    font-size: 0.68rem;
+  }
+
+  /* Grid */
+  .menu-grid {
+    gap: 12px;
+  }
+
+  .menu-grid-sm {
+    grid-template-columns: 1fr;
+  }
+
+  /* Photo cards — compact on small screens */
+  .dish-photo {
+    height: 160px;
+  }
+
+  .dish-body {
+    padding: 14px 16px 16px;
+  }
+
+  .dish-body h3 {
+    font-size: 0.95rem;
+  }
+
+  /* Price badge slightly smaller */
+  .dish-photo .dish-price-badge {
+    font-size: 0.88rem;
+    padding: 4px 10px;
+  }
+
+  /* Drinks subheadings */
+  .drinks-subheading {
+    font-size: 1.1rem;
+    margin: 28px 0 6px;
+  }
+
+  /* CTA banner */
+  .menu-cta-banner {
+    padding: 48px 16px;
+  }
+
+  .menu-cta-banner h2 {
+    font-size: 1.5rem;
+  }
+}
