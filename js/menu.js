@@ -23,40 +23,41 @@
     btn.addEventListener('click', () => scrollToSection(btn.dataset.target));
   });
 
-  // Handle incoming hash from home page cards
-  // Store target, strip hash, then scroll after all images load
+  // Handle hash from home page cards via sessionStorage
   if (window.location.hash) {
     const id = window.location.hash.slice(1);
     sessionStorage.setItem('menuScrollTarget', id);
-    // Remove hash without triggering scroll
     history.replaceState(null, '', window.location.pathname);
   }
 
   const scrollTarget = sessionStorage.getItem('menuScrollTarget');
   if (scrollTarget) {
     sessionStorage.removeItem('menuScrollTarget');
-    // Wait for all images to finish loading before scrolling
     window.addEventListener('load', () => {
-      // Extra delay to let layout fully settle
       setTimeout(() => scrollToSection(scrollTarget), 200);
     });
   }
 
-  // Scroll → highlight active tab
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        tabs.forEach(btn => {
-          btn.classList.toggle('active', btn.dataset.target === id);
-        });
-        const activeTab = document.querySelector(`.tab-btn[data-target="${id}"]`);
-        if (activeTab) {
-          activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  // Scroll → highlight active tab (with debounce to avoid fighting smooth scroll)
+  let scrollTimer = null;
+  window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      let current = sections[0].id;
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= getOffset() + 20) {
+          current = section.id;
         }
+      });
+      tabs.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.target === current);
+      });
+      const activeTab = document.querySelector(`.tab-btn[data-target="${current}"]`);
+      if (activeTab) {
+        activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
-    });
-  }, { rootMargin: '-30% 0px -60% 0px' });
+    }, 50);
+  }, { passive: true });
 
-  sections.forEach(s => observer.observe(s));
 })();
