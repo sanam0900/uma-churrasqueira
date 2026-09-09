@@ -14,12 +14,24 @@
 
   navToggle && navToggle.addEventListener('click', () => {
     navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open');
   });
 
   // Close menu when a nav link is tapped
   navLinks && navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+    });
   });
+
+  // Close menu on scroll
+  window.addEventListener('scroll', () => {
+    if (navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+    }
+  }, { passive: true });
 
   // ---- Set min date on reservation form ----
   const dateInput = document.getElementById('resDate');

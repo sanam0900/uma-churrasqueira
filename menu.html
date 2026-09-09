@@ -25,7 +25,7 @@
       <li><a href="index.html#reviews">Reviews</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <button class="nav-toggle" id="navToggle">&#9776;</button>
+    <button class="nav-toggle" id="navToggle"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
   </nav>
 
   <!-- MENU HERO -->
@@ -626,10 +626,22 @@
   <script>
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.querySelector('.nav-links');
-    navToggle && navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks && navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    navToggle && navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open');
     });
+    navLinks && navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+      });
+    });
+    window.addEventListener('scroll', () => {
+      if (navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>
