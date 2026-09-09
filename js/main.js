@@ -13,34 +13,39 @@
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.querySelector('.nav-links');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function openMenu() {
+    navLinks.classList.add('open');
+    navToggle.classList.add('open');
+    navbar.classList.add('menu-open');
+    if (navOverlay) navOverlay.classList.add('open');
+  }
+
+  function closeMenu() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    navbar.classList.remove('menu-open');
+    if (navOverlay) navOverlay.classList.remove('open');
+  }
+
+  navToggle && navToggle.addEventListener('click', () => {
+    navLinks.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  navLinks && navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+
+  window.addEventListener('scroll', () => {
+    if (navLinks.classList.contains('open')) closeMenu();
+  }, { passive: true });
 
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
   });
-
-  navToggle && navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    navToggle.classList.toggle('open');
-    navbar.classList.toggle('menu-open');
-  });
-
-  // Close menu when a nav link is tapped
-  navLinks && navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.classList.remove('open');
-      navbar.classList.remove('menu-open');
-    });
-  });
-
-  // Close menu on scroll
-  window.addEventListener('scroll', () => {
-    if (navLinks.classList.contains('open')) {
-      navLinks.classList.remove('open');
-      navToggle.classList.remove('open');
-      navbar.classList.remove('menu-open');
-    }
-  }, { passive: true });
 
   // ---- Set min date on reservation form ----
   const dateInput = document.getElementById('resDate');

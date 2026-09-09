@@ -1041,12 +1041,27 @@ ul { list-style: none; }
   /* Navbar */
   .navbar { padding: 14px 16px; z-index: 1001; }
 
-  .nav-links {
+  /* Nav overlay — full screen dark cover */
+  .nav-overlay {
+    display: none;
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     background: rgba(8,8,8,0.96);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .nav-overlay.open {
+    display: block;
+    opacity: 1;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;

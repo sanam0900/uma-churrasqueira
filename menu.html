@@ -12,6 +12,9 @@
 </head>
 <body class="menu-page">
 
+  <!-- Mobile nav overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
   <!-- NAV -->
   <nav class="navbar scrolled" id="navbar">
     <div class="nav-brand">
@@ -629,24 +632,30 @@
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.querySelector('.nav-links');
     const navbar    = document.getElementById('navbar');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openMenu() {
+      navLinks.classList.add('open');
+      navToggle.classList.add('open');
+      navbar.classList.add('menu-open');
+      if (navOverlay) navOverlay.classList.add('open');
+    }
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navbar.classList.remove('menu-open');
+      if (navOverlay) navOverlay.classList.remove('open');
+    }
+
     navToggle && navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      navToggle.classList.toggle('open');
-      navbar.classList.toggle('menu-open');
+      navLinks.classList.contains('open') ? closeMenu() : openMenu();
     });
     navLinks && navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        navToggle.classList.remove('open');
-        navbar.classList.remove('menu-open');
-      });
+      link.addEventListener('click', closeMenu);
     });
+    if (navOverlay) navOverlay.addEventListener('click', closeMenu);
     window.addEventListener('scroll', () => {
-      if (navLinks.classList.contains('open')) {
-        navLinks.classList.remove('open');
-        navToggle.classList.remove('open');
-        navbar.classList.remove('menu-open');
-      }
+      if (navLinks.classList.contains('open')) closeMenu();
     }, { passive: true });
   </script>
 </body>
