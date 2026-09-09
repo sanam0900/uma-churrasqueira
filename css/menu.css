@@ -43,16 +43,21 @@ body.menu-page {
 
 /* ---- Sticky Tabs ---- */
 .menu-tabs-wrap {
-  position: sticky;
+  position: fixed;
   top: 68px;
+  left: 0;
+  right: 0;
   z-index: 100;
   background: rgba(20,20,20,0.97);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.menu-tabs-inner {
   overflow-x: auto;
   scrollbar-width: none;
 }
-.menu-tabs-wrap::-webkit-scrollbar { display: none; }
+.menu-tabs-inner::-webkit-scrollbar { display: none; }
 
 .menu-tabs {
   display: flex;
@@ -84,7 +89,7 @@ body.menu-page {
 
 /* ---- Menu Main ---- */
 .menu-main {
-  padding: 60px 0 80px;
+  padding: 112px 0 80px;
 }
 
 /* ---- Section ---- */
