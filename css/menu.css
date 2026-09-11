@@ -148,6 +148,19 @@ body.menu-page {
   margin-bottom: 16px;
 }
 
+/* ---- Landscape card (dishes with sides — full plate visible) ---- */
+.dish-card--landscape .dish-photo {
+  background: #111;
+  height: 260px;
+}
+.dish-card--landscape .dish-photo img {
+  object-fit: contain;
+  object-position: center center;
+}
+.dish-card--landscape .dish-photo::after {
+  display: none;
+}
+
 /* ---- Dish Grid ---- */
 .menu-grid {
   display: grid;
@@ -404,7 +417,9 @@ body.menu-page {
     height: 180px;
   }
 
-  /* Compact drink cards — full width, bigger tap target */
+  .dish-card--landscape .dish-photo {
+    height: 220px;
+  }
   .dish-card.compact {
     padding: 14px 16px;
     min-height: 48px;
@@ -444,6 +459,10 @@ body.menu-page {
   /* Photo cards — compact on small screens */
   .dish-photo {
     height: 160px;
+  }
+
+  .dish-card--landscape .dish-photo {
+    height: 200px;
   }
 
   .dish-body {
