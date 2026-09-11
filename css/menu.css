@@ -161,6 +161,11 @@ body.menu-page {
   display: none;
 }
 
+/* ---- Tall card (portrait food photos with sides) ---- */
+.dish-card--tall .dish-photo {
+  height: 320px;
+}
+
 /* ---- Dish Grid ---- */
 .menu-grid {
   display: grid;
@@ -420,6 +425,10 @@ body.menu-page {
   .dish-card--landscape .dish-photo {
     height: 220px;
   }
+
+  .dish-card--tall .dish-photo {
+    height: 280px;
+  }
   .dish-card.compact {
     padding: 14px 16px;
     min-height: 48px;
@@ -463,6 +472,10 @@ body.menu-page {
 
   .dish-card--landscape .dish-photo {
     height: 200px;
+  }
+
+  .dish-card--tall .dish-photo {
+    height: 260px;
   }
 
   .dish-body {
