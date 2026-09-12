@@ -2,8 +2,6 @@
    admin.js — Uma Churrasqueira Menu Admin Panel
    ============================================================ */
 
-const ADMIN_PASSWORD = 'uma2026';
-
 const AVAILABLE_TAGS = [
   'Nepali Classic', 'Best Seller', 'Popular', 'Best Value',
   "Signature Dish", "Chef's Pick", 'Portuguese Classic', 'Nepali'
@@ -49,17 +47,40 @@ function checkLogin() {
   return sessionStorage.getItem('uma_admin') === 'true';
 }
 
-function login() {
+async function login() {
   const pw = document.getElementById('loginPw').value;
-  if (pw === ADMIN_PASSWORD) {
-    sessionStorage.setItem('uma_admin', 'true');
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('adminShell').classList.add('visible');
-    initAdmin();
-  } else {
-    document.getElementById('loginError').classList.add('visible');
-    document.getElementById('loginPw').value = '';
-    document.getElementById('loginPw').focus();
+  const btn = document.getElementById('loginBtn');
+  const errorEl = document.getElementById('loginError');
+
+  btn.disabled = true;
+  btn.textContent = 'Checking…';
+  errorEl.classList.remove('visible');
+
+  try {
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw })
+    });
+    const data = await res.json();
+
+    if (res.ok && data.ok) {
+      sessionStorage.setItem('uma_admin', 'true');
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminShell').classList.add('visible');
+      initAdmin();
+    } else {
+      errorEl.textContent = data.error || 'Incorrect password. Try again.';
+      errorEl.classList.add('visible');
+      document.getElementById('loginPw').value = '';
+      document.getElementById('loginPw').focus();
+    }
+  } catch (err) {
+    errorEl.textContent = 'Connection error. Please try again.';
+    errorEl.classList.add('visible');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Sign In';
   }
 }
 
