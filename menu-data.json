@@ -7,89 +7,13 @@
       "note": null,
       "gridSize": "normal",
       "cards": [
-        {
-          "id": "papad",
-          "name": "Papad / Papari",
-          "qty": "1 uni.",
-          "description": "Thin, crispy snack made from lentil or chickpea flour",
-          "price": 90,
-          "image": "Pics/papad.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "samosa",
-          "name": "Chicken Pakora",
-          "qty": "1 uni.",
-          "description": "Handmade crispy pastry stuffed with delicately spiced minced chicken",
-          "price": 2.5,
-          "image": "Pics/samosa.png",
-          "featured": true,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "momo",
-          "name": "Chicken Momo",
-          "qty": "10 uni.",
-          "description": "Traditional Nepali steamed dumplings filled with seasoned minced chicken",
-          "price": 6.5,
-          "image": "Pics/momo.png",
-          "featured": true,
-          "variant": "standard",
-          "tags": [
-            "Nepali Classic"
-          ]
-        },
-        {
-          "id": "calamari",
-          "name": "Calamari Rings",
-          "qty": "7 uni.",
-          "description": "Crispy fried squid rings, golden and light",
-          "price": 3.5,
-          "image": "Pics/calamari-rings.jpg",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "nuggets",
-          "name": "Chicken Nuggets",
-          "qty": "7 uni.",
-          "description": "Crispy breaded chicken pieces",
-          "price": 3.5,
-          "image": "Pics/Chicken Nuggets.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "bacalhau",
-          "name": "Pasteis de Bacalhau",
-          "qty": "2 uni.",
-          "description": "Traditional Portuguese codfish cakes — crispy outside, tender inside",
-          "price": 3.5,
-          "image": "Pics/Pasteis de Bacalhau.png",
-          "featured": true,
-          "variant": "standard",
-          "tags": [
-            "Portuguese Classic"
-          ]
-        },
-        {
-          "id": "bhatmas",
-          "name": "Sadheko Bhatmas",
-          "qty": "",
-          "description": "Roasted soybeans mixed with onion, tomato, garlic, ginger and spices",
-          "price": 3,
-          "image": "Pics/Sadheko Bhatmas.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": [
-            "Nepali Classic"
-          ]
-        }
+        { "id": "papad", "name": "Papad / Papari", "qty": "1 uni.", "description": "Thin, crispy snack made from lentil or chickpea flour", "price": 0.50, "image": "Pics/papad.png", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "samosa", "name": "Chicken Samosa", "qty": "1 uni.", "description": "Handmade crispy pastry stuffed with delicately spiced minced chicken", "price": 2.50, "image": "Pics/samosa.png", "featured": true, "variant": "standard", "tags": [] },
+        { "id": "momo", "name": "Chicken Momo", "qty": "10 uni.", "description": "Traditional Nepali steamed dumplings filled with seasoned minced chicken", "price": 6.50, "image": "Pics/momo.png", "featured": true, "variant": "standard", "tags": ["Nepali Classic"] },
+        { "id": "calamari", "name": "Calamari Rings", "qty": "7 uni.", "description": "Crispy fried squid rings, golden and light", "price": 3.50, "image": "Pics/calamari-rings.jpg", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "nuggets", "name": "Chicken Nuggets", "qty": "7 uni.", "description": "Crispy breaded chicken pieces", "price": 3.50, "image": "Pics/Chicken Nuggets.png", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "bacalhau", "name": "Pasteis de Bacalhau", "qty": "2 uni.", "description": "Traditional Portuguese codfish cakes — crispy outside, tender inside", "price": 3.50, "image": "Pics/Pasteis de Bacalhau.png", "featured": true, "variant": "standard", "tags": ["Portuguese Classic"] },
+        { "id": "bhatmas", "name": "Sadheko Bhatmas", "qty": "", "description": "Roasted soybeans mixed with onion, tomato, garlic, ginger and spices", "price": 3.00, "image": "Pics/Sadheko Bhatmas.png", "featured": false, "variant": "standard", "tags": ["Nepali Classic"] }
       ]
     },
     {
@@ -100,87 +24,13 @@
       "note": "No sides included · Sem acompanhamentos",
       "gridSize": "normal",
       "cards": [
-        {
-          "id": "frango-inteiro",
-          "name": "Inteiro Frango Assado",
-          "qty": "",
-          "description": "Full chicken — charcoal roasted to perfection over open flame",
-          "price": 13,
-          "image": "Pics/Inteiro Frango Assado.png",
-          "featured": true,
-          "variant": "standard",
-          "tags": [
-            "Best Seller"
-          ]
-        },
-        {
-          "id": "frango-meio-grilled",
-          "name": "1/2 Frango Assado",
-          "qty": "",
-          "description": "Half chicken grill — smoky charcoal flavour",
-          "price": 6.5,
-          "image": "Pics/1_2 Frango .jpg",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "piano-inteiro",
-          "name": "Piano Inteiro",
-          "qty": "",
-          "description": "Full rack of pork ribs — slow-grilled until tender and caramelised",
-          "price": 17,
-          "image": "Pics/Piano Inteiro.png",
-          "featured": true,
-          "variant": "standard",
-          "tags": [
-            "Chef's Pick"
-          ]
-        },
-        {
-          "id": "salsicha-um",
-          "name": "Um prato Salsicha",
-          "qty": "4 uni.",
-          "description": "1 portion of grilled pork sausages",
-          "price": 9,
-          "image": "Pics/salsicha_final.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "salsicha-meio",
-          "name": "1/2 prato Salsicha",
-          "qty": "2 uni.",
-          "description": "½ portion of grilled pork sausages",
-          "price": 4.5,
-          "image": "Pics/salsicha_final.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "entremeada-um",
-          "name": "Um prato Entremeada",
-          "qty": "4 uni.",
-          "description": "1 portion of charcoal-grilled pork belly",
-          "price": 9,
-          "image": "Pics/entremeada_final.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "entremeada-meio",
-          "name": "1/2 prato Entremeada",
-          "qty": "2 uni.",
-          "description": "½ portion of charcoal-grilled pork belly",
-          "price": 4.5,
-          "image": "Pics/entremeada_final.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        }
+        { "id": "frango-inteiro", "name": "Inteiro Frango Assado", "qty": "", "description": "Full chicken — charcoal roasted to perfection over open flame", "price": 13.00, "image": "Pics/Inteiro Frango Assado.png", "featured": true, "variant": "standard", "tags": ["Best Seller"] },
+        { "id": "frango-meio-grilled", "name": "1/2 Frango Assado", "qty": "", "description": "Half chicken grill — smoky charcoal flavour", "price": 6.50, "image": "Pics/1_2 Frango .jpg", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "piano-inteiro", "name": "Piano Inteiro", "qty": "", "description": "Full rack of pork ribs — slow-grilled until tender and caramelised", "price": 17.00, "image": "Pics/Piano Inteiro.png", "featured": true, "variant": "standard", "tags": ["Chef's Pick"] },
+        { "id": "salsicha-um", "name": "Um prato Salsicha", "qty": "4 uni.", "description": "1 portion of grilled pork sausages", "price": 9.00, "image": "Pics/salsicha_final.png", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "salsicha-meio", "name": "1/2 prato Salsicha", "qty": "2 uni.", "description": "½ portion of grilled pork sausages", "price": 4.50, "image": "Pics/salsicha_final.png", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "entremeada-um", "name": "Um prato Entremeada", "qty": "4 uni.", "description": "1 portion of charcoal-grilled pork belly", "price": 9.00, "image": "Pics/entremeada_final.png", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "entremeada-meio", "name": "1/2 prato Entremeada", "qty": "2 uni.", "description": "½ portion of charcoal-grilled pork belly", "price": 4.50, "image": "Pics/entremeada_final.png", "featured": false, "variant": "standard", "tags": [] }
       ]
     },
     {
@@ -190,76 +40,12 @@
       "note": "Choose 1 or 2 sides: Rice, Homemade Fries, or Fresh Salad",
       "gridSize": "normal",
       "cards": [
-        {
-          "id": "frango-inteiro-1side",
-          "name": "Inteiro Frango Assado",
-          "qty": "",
-          "description": "Full chicken grill + 1 side included",
-          "price": 16,
-          "image": "Pics/Inteiro Frango Assado.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "frango-inteiro-2sides",
-          "name": "Inteiro Frango Assado",
-          "qty": "",
-          "description": "Full chicken grill + 2 sides included",
-          "price": 19,
-          "image": "Pics/Inteiro Frango Assado.png",
-          "featured": true,
-          "variant": "landscape",
-          "tags": [
-            "Best Value"
-          ]
-        },
-        {
-          "id": "frango-meio-1side",
-          "name": "1/2 Frango Assado",
-          "qty": "",
-          "description": "Half chicken grill + 1 side included",
-          "price": 8,
-          "image": "Pics/1_2 Frango Assado(1).png",
-          "featured": false,
-          "variant": "tall",
-          "tags": []
-        },
-        {
-          "id": "frango-meio-2sides",
-          "name": "1/2 Frango Assado",
-          "qty": "",
-          "description": "Half chicken grill + 2 sides included",
-          "price": 9.5,
-          "image": "Pics/1_2 Frango Assado.png",
-          "featured": false,
-          "variant": "tall",
-          "tags": []
-        },
-        {
-          "id": "frango-quarto",
-          "name": "1/4 Frango Assado",
-          "qty": "",
-          "description": "Quarter chicken grill + 2 sides included",
-          "price": 7.5,
-          "image": "Pics/1_4 Frango Assado.png",
-          "featured": false,
-          "variant": "tall",
-          "tags": []
-        },
-        {
-          "id": "zambeziana",
-          "name": "Frango à Zambeziana",
-          "qty": "",
-          "description": "Grilled chicken mixed with rich coconut sauce + 2 sides included",
-          "price": 21,
-          "image": "Pics/Inteiro Frango Assado.png",
-          "featured": true,
-          "variant": "landscape",
-          "tags": [
-            "Signature Dish"
-          ]
-        }
+        { "id": "frango-inteiro-1side", "name": "Inteiro Frango Assado", "qty": "", "description": "Full chicken grill + 1 side included", "price": 16.00, "image": "Pics/Inteiro Frango Assado.png", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "frango-inteiro-2sides", "name": "Inteiro Frango Assado", "qty": "", "description": "Full chicken grill + 2 sides included", "price": 19.00, "image": "Pics/Inteiro Frango Assado.png", "featured": true, "variant": "landscape", "tags": ["Best Value"] },
+        { "id": "frango-meio-1side", "name": "1/2 Frango Assado", "qty": "", "description": "Half chicken grill + 1 side included", "price": 8.00, "image": "Pics/1_2 Frango Assado(1).png", "featured": false, "variant": "tall", "tags": [] },
+        { "id": "frango-meio-2sides", "name": "1/2 Frango Assado", "qty": "", "description": "Half chicken grill + 2 sides included", "price": 9.50, "image": "Pics/1_2 Frango Assado.png", "featured": false, "variant": "tall", "tags": [] },
+        { "id": "frango-quarto", "name": "1/4 Frango Assado", "qty": "", "description": "Quarter chicken grill + 2 sides included", "price": 7.50, "image": "Pics/1_4 Frango Assado.png", "featured": false, "variant": "tall", "tags": [] },
+        { "id": "zambeziana", "name": "Frango à Zambeziana", "qty": "", "description": "Grilled chicken mixed with rich coconut sauce + 2 sides included", "price": 21.00, "image": "Pics/Inteiro Frango Assado.png", "featured": true, "variant": "landscape", "tags": ["Signature Dish"] }
       ]
     },
     {
@@ -269,41 +55,9 @@
       "note": "Choose 2 sides: Rice, Homemade Fries, or Fresh Salad",
       "gridSize": "normal",
       "cards": [
-        {
-          "id": "piano-menu",
-          "name": "1/2 Piano Menu",
-          "qty": "",
-          "description": "Half rack pork ribs + 2 sides included",
-          "price": 11.5,
-          "image": "Pics/1_2 Piano Menu.png",
-          "featured": true,
-          "variant": "landscape",
-          "tags": [
-            "Popular"
-          ]
-        },
-        {
-          "id": "menu-salsicha",
-          "name": "Menu Salsicha",
-          "qty": "3 uni.",
-          "description": "3 grilled pork sausages + 2 sides included",
-          "price": 10,
-          "image": "Pics/Menu Salsicha.png",
-          "featured": false,
-          "variant": "landscape",
-          "tags": []
-        },
-        {
-          "id": "menu-entremeada",
-          "name": "Menu Entremeada",
-          "qty": "2 uni.",
-          "description": "2 pork belly pieces + 2 sides included",
-          "price": 10,
-          "image": "Pics/Menu_Entremeada_final.png",
-          "featured": false,
-          "variant": "landscape",
-          "tags": []
-        }
+        { "id": "piano-menu", "name": "1/2 Piano Menu", "qty": "", "description": "Half rack pork ribs + 2 sides included", "price": 11.50, "image": "Pics/1_2 Piano Menu.png", "featured": true, "variant": "landscape", "tags": ["Popular"] },
+        { "id": "menu-salsicha", "name": "Menu Salsicha", "qty": "3 uni.", "description": "3 grilled pork sausages + 2 sides included", "price": 10.00, "image": "Pics/Menu Salsicha.png", "featured": false, "variant": "landscape", "tags": [] },
+        { "id": "menu-entremeada", "name": "Menu Entremeada", "qty": "2 uni.", "description": "2 pork belly pieces + 2 sides included", "price": 10.00, "image": "Pics/Menu_Entremeada_final.png", "featured": false, "variant": "landscape", "tags": [] }
       ]
     },
     {
@@ -313,43 +67,9 @@
       "note": "Our curry is served with rice · Caril é servido com arroz",
       "gridSize": "normal",
       "cards": [
-        {
-          "id": "chicken-curry",
-          "name": "Caril de Frango",
-          "qty": "",
-          "description": "Chicken Curry — slow-cooked, aromatic spices, served with rice",
-          "price": 11.5,
-          "image": "Pics/chicekncurry.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "prawn-curry",
-          "name": "Caril de Camarão",
-          "qty": "",
-          "description": "Prawn Curry — juicy prawns in a rich spiced sauce, served with rice",
-          "price": 13.5,
-          "image": "Pics/prawncurry.png",
-          "featured": true,
-          "variant": "standard",
-          "tags": [
-            "Popular"
-          ]
-        },
-        {
-          "id": "prawn-coconut-curry",
-          "name": "Caril de Camarão com molho de coco",
-          "qty": "",
-          "description": "Prawn Curry with velvety coconut sauce — served with rice",
-          "price": 14,
-          "image": "Pics/prawncurry.png",
-          "featured": true,
-          "variant": "standard",
-          "tags": [
-            "Chef's Pick"
-          ]
-        }
+        { "id": "chicken-curry", "name": "Caril de Frango", "qty": "", "description": "Chicken Curry — slow-cooked, aromatic spices, served with rice", "price": 11.50, "image": "Pics/chicekncurry.png", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "prawn-curry", "name": "Caril de Camarão", "qty": "", "description": "Prawn Curry — juicy prawns in a rich spiced sauce, served with rice", "price": 13.50, "image": "Pics/prawncurry.png", "featured": true, "variant": "standard", "tags": ["Popular"] },
+        { "id": "prawn-coconut-curry", "name": "Caril de Camarão com molho de coco", "qty": "", "description": "Prawn Curry with velvety coconut sauce — served with rice", "price": 14.00, "image": "Pics/prawncurry.png", "featured": true, "variant": "standard", "tags": ["Chef's Pick"] }
       ]
     },
     {
@@ -359,30 +79,8 @@
       "note": "Choose 1 side: Rice, Homemade Fries, Fresh Salad or Boiled Veggies",
       "gridSize": "normal",
       "cards": [
-        {
-          "id": "salmon",
-          "name": "Salmão Grelhada",
-          "qty": "",
-          "description": "Grilled Salmon fillet + 1 side included",
-          "price": 13.5,
-          "image": "Pics/Salmão Grelhada.png",
-          "featured": true,
-          "variant": "tall",
-          "tags": [
-            "Popular"
-          ]
-        },
-        {
-          "id": "dourada",
-          "name": "Dourada Grelhada",
-          "qty": "",
-          "description": "Grilled Sea Bream (Dourada) + 1 side included",
-          "price": 12.5,
-          "image": "Pics/Dourada Grelhada.png",
-          "featured": false,
-          "variant": "tall",
-          "tags": []
-        }
+        { "id": "salmon", "name": "Salmão Grelhada", "qty": "", "description": "Grilled Salmon fillet + 1 side included", "price": 13.50, "image": "Pics/Salmão Grelhada.png", "featured": true, "variant": "tall", "tags": ["Popular"] },
+        { "id": "dourada", "name": "Dourada Grelhada", "qty": "", "description": "Grilled Sea Bream (Dourada) + 1 side included", "price": 12.50, "image": "Pics/Dourada Grelhada.png", "featured": false, "variant": "tall", "tags": [] }
       ]
     },
     {
@@ -392,50 +90,10 @@
       "note": null,
       "gridSize": "normal",
       "cards": [
-        {
-          "id": "salada-verde",
-          "name": "Salada Verde",
-          "qty": "",
-          "description": "Fresh green salad",
-          "price": 3.5,
-          "image": "Pics/Salada verde.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "frango-salada",
-          "name": "Frango Salada",
-          "qty": "",
-          "description": "Chicken salad — grilled chicken strips over fresh greens",
-          "price": 9.5,
-          "image": "Pics/Frango Salada.png",
-          "featured": true,
-          "variant": "standard",
-          "tags": []
-        },
-        {
-          "id": "arroz",
-          "name": "Arroz",
-          "qty": "",
-          "description": "Fluffy steamed white rice",
-          "price": 3,
-          "image": "Pics/Arroz.png",
-          "featured": false,
-          "variant": "landscape",
-          "tags": []
-        },
-        {
-          "id": "batata-fritas",
-          "name": "Batata Fritas",
-          "qty": "",
-          "description": "Homemade Fries — crispy, golden, hand-cut",
-          "price": 3,
-          "image": "Pics/Batata Fritas.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": []
-        }
+        { "id": "salada-verde", "name": "Salada Verde", "qty": "", "description": "Fresh green salad", "price": 3.50, "image": "Pics/Salada verde.png", "featured": false, "variant": "standard", "tags": [] },
+        { "id": "frango-salada", "name": "Frango Salada", "qty": "", "description": "Chicken salad — grilled chicken strips over fresh greens", "price": 9.50, "image": "Pics/Frango Salada.png", "featured": true, "variant": "standard", "tags": [] },
+        { "id": "arroz", "name": "Arroz", "qty": "", "description": "Fluffy steamed white rice", "price": 3.00, "image": "Pics/Arroz.png", "featured": false, "variant": "landscape", "tags": [] },
+        { "id": "batata-fritas", "name": "Batata Fritas", "qty": "", "description": "Homemade Fries — crispy, golden, hand-cut", "price": 3.00, "image": "Pics/Batata Fritas.png", "featured": false, "variant": "standard", "tags": [] }
       ]
     },
     {
@@ -449,399 +107,113 @@
           "heading": "Soft Drinks & Non-Alcoholic",
           "note": null,
           "cards": [
-            {
-              "id": "soft-drinks",
-              "name": "Soft Drinks / Refrigerants",
-              "price": 1.8,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "agua",
-              "name": "Água 50cl (Still Water)",
-              "price": 1,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "pedras",
-              "name": "Pedras (Sparkling Water)",
-              "price": 2.2,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "compal",
-              "name": "Compal",
-              "price": 2.2,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "redbull",
-              "name": "Red Bull",
-              "price": 2.7,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "somersby",
-              "name": "Somersby",
-              "price": 2.8,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "ginger-ale",
-              "name": "Ginger Ale",
-              "price": 2.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "cafe",
-              "name": "Café",
-              "price": 0.8,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "soft-drinks", "name": "Soft Drinks / Refrigerants", "price": 1.80, "featured": false, "tags": [] },
+            { "id": "agua", "name": "Água 50cl (Still Water)", "price": 1.00, "featured": false, "tags": [] },
+            { "id": "pedras", "name": "Pedras (Sparkling Water)", "price": 2.20, "featured": false, "tags": [] },
+            { "id": "compal", "name": "Compal", "price": 2.20, "featured": false, "tags": [] },
+            { "id": "redbull", "name": "Red Bull", "price": 2.70, "featured": false, "tags": [] },
+            { "id": "somersby", "name": "Somersby", "price": 2.80, "featured": false, "tags": [] },
+            { "id": "ginger-ale", "name": "Ginger Ale", "price": 2.50, "featured": false, "tags": [] },
+            { "id": "cafe", "name": "Café", "price": 0.80, "featured": false, "tags": [] }
           ]
         },
         {
           "heading": "🍺 Cerveja / Beer",
           "note": "Draft Beer — Pressão",
           "cards": [
-            {
-              "id": "sb-1l",
-              "name": "Superbock 1L Jar",
-              "price": 6.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "sb-50cl",
-              "name": "Superbock Caneca 50cl",
-              "price": 3.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "sb-35cl",
-              "name": "Superbock Tulipa 35cl",
-              "price": 2.7,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "sb-20cl",
-              "name": "Superbock Imperial 20cl",
-              "price": 1.6,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "sb-1l", "name": "Superbock 1L Jar", "price": 6.50, "featured": false, "tags": [] },
+            { "id": "sb-50cl", "name": "Superbock Caneca 50cl", "price": 3.50, "featured": false, "tags": [] },
+            { "id": "sb-35cl", "name": "Superbock Tulipa 35cl", "price": 2.70, "featured": false, "tags": [] },
+            { "id": "sb-20cl", "name": "Superbock Imperial 20cl", "price": 1.60, "featured": false, "tags": [] }
           ]
         },
         {
           "heading": null,
           "note": "Bottled Beer (Garrafa) 33cl",
           "cards": [
-            {
-              "id": "sagres",
-              "name": "Sagres",
-              "price": 2,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "lukla",
-              "name": "Lukla",
-              "price": 2.7,
-              "featured": true,
-              "tags": [
-                "Nepali"
-              ]
-            },
-            {
-              "id": "sb-preta",
-              "name": "Superbock Preta",
-              "price": 2.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "sb-0",
-              "name": "Superbock sem álcool (0%)",
-              "price": 2.5,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "sagres", "name": "Sagres", "price": 2.00, "featured": false, "tags": [] },
+            { "id": "lukla", "name": "Lukla", "price": 2.70, "featured": true, "tags": ["Nepali"] },
+            { "id": "sb-preta", "name": "Superbock Preta", "price": 2.50, "featured": false, "tags": [] },
+            { "id": "sb-0", "name": "Superbock sem álcool (0%)", "price": 2.50, "featured": false, "tags": [] }
           ]
         },
         {
           "heading": "🍷 Vinho / Wine",
           "note": "Tasa de Vinho — House Wine",
           "cards": [
-            {
-              "id": "vinho-1l",
-              "name": "Vinho 1L Jar",
-              "price": 6.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "vinho-half",
-              "name": "Vinho ½L Jar",
-              "price": 3.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "copo-vinho",
-              "name": "Copo de Vinho (1 cup)",
-              "price": 1.8,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "vinho-1l", "name": "Vinho 1L Jar", "price": 6.50, "featured": false, "tags": [] },
+            { "id": "vinho-half", "name": "Vinho ½L Jar", "price": 3.50, "featured": false, "tags": [] },
+            { "id": "copo-vinho", "name": "Copo de Vinho (1 cup)", "price": 1.80, "featured": false, "tags": [] }
           ]
         },
         {
           "heading": null,
           "note": "Garrafa de Vinho — Bottled Wine (750ml / 350ml)",
           "cards": [
-            {
-              "id": "esteva",
-              "name": "Esteva (Tinto/Branco)",
-              "price": "€14.50 / €7.50",
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "monte-velho",
-              "name": "Monte Velho",
-              "price": "€14.00 / €7.00",
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "borba",
-              "name": "Borba",
-              "price": "€11.50 / €6.00",
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "porta-ravessa",
-              "name": "Porta da Ravessa",
-              "price": 10.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "rendeiro",
-              "name": "Rendeiro",
-              "price": "€10.00 / €5.00",
-              "featured": false,
-              "tags": []
-            }
+            { "id": "esteva", "name": "Esteva (Tinto/Branco)", "price": "€14.50 / €7.50", "featured": false, "tags": [] },
+            { "id": "monte-velho", "name": "Monte Velho", "price": "€14.00 / €7.00", "featured": false, "tags": [] },
+            { "id": "borba", "name": "Borba", "price": "€11.50 / €6.00", "featured": false, "tags": [] },
+            { "id": "porta-ravessa", "name": "Porta da Ravessa", "price": 10.50, "featured": false, "tags": [] },
+            { "id": "rendeiro", "name": "Rendeiro", "price": "€10.00 / €5.00", "featured": false, "tags": [] }
           ]
         },
         {
           "heading": null,
           "note": "Vinho Verde",
           "cards": [
-            {
-              "id": "casal-gracia",
-              "name": "Casal Gracia (750ml)",
-              "price": 14,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "gazela-verde",
-              "name": "Gazela Verde (750ml)",
-              "price": 14,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "casal-gracia", "name": "Casal Gracia (750ml)", "price": 14.00, "featured": false, "tags": [] },
+            { "id": "gazela-verde", "name": "Gazela Verde (750ml)", "price": 14.00, "featured": false, "tags": [] }
           ]
         },
         {
           "heading": null,
           "note": "Vinho Rosé",
           "cards": [
-            {
-              "id": "mateus-750",
-              "name": "Mateus Rose (750ml)",
-              "price": 13.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "mateus-375",
-              "name": "Mateus Rose (375ml)",
-              "price": 7,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "mateus-750", "name": "Mateus Rose (750ml)", "price": 13.50, "featured": false, "tags": [] },
+            { "id": "mateus-375", "name": "Mateus Rose (375ml)", "price": 7.00, "featured": false, "tags": [] }
           ]
         },
         {
           "heading": "🥃 Spirits",
           "note": "Brandy",
           "cards": [
-            {
-              "id": "macieira",
-              "name": "Macieira",
-              "price": 3.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "brandy-croft",
-              "name": "Brandy Croft",
-              "price": 3.5,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "macieira", "name": "Macieira", "price": 3.50, "featured": false, "tags": [] },
+            { "id": "brandy-croft", "name": "Brandy Croft", "price": 3.50, "featured": false, "tags": [] }
           ]
         },
         {
           "heading": null,
           "note": "Whiskey",
           "cards": [
-            {
-              "id": "lawsons",
-              "name": "William Lawson's",
-              "price": 3,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "cutty-sark",
-              "name": "Cutty Sark",
-              "price": 3,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "red-label",
-              "name": "Red Label",
-              "price": 3.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "famous-grouse",
-              "name": "The Famous Grouse",
-              "price": 4,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "jameson",
-              "name": "Jameson",
-              "price": 4,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "jack-daniels",
-              "name": "Jack Daniels",
-              "price": 5.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "black-label",
-              "name": "Black Label",
-              "price": 6,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "chivas",
-              "name": "Chivas Regal",
-              "price": 6,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "double-black",
-              "name": "Double Black",
-              "price": 6.5,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "lawsons", "name": "William Lawson's", "price": 3.00, "featured": false, "tags": [] },
+            { "id": "cutty-sark", "name": "Cutty Sark", "price": 3.00, "featured": false, "tags": [] },
+            { "id": "red-label", "name": "Red Label", "price": 3.50, "featured": false, "tags": [] },
+            { "id": "famous-grouse", "name": "The Famous Grouse", "price": 4.00, "featured": false, "tags": [] },
+            { "id": "jameson", "name": "Jameson", "price": 4.00, "featured": false, "tags": [] },
+            { "id": "jack-daniels", "name": "Jack Daniels", "price": 5.50, "featured": false, "tags": [] },
+            { "id": "black-label", "name": "Black Label", "price": 6.00, "featured": false, "tags": [] },
+            { "id": "chivas", "name": "Chivas Regal", "price": 6.00, "featured": false, "tags": [] },
+            { "id": "double-black", "name": "Double Black", "price": 6.50, "featured": false, "tags": [] }
           ]
         },
         {
           "heading": null,
           "note": "Rum",
           "cards": [
-            {
-              "id": "khukuri",
-              "name": "Khukuri Rum",
-              "price": 5.5,
-              "featured": true,
-              "tags": [
-                "Nepali"
-              ]
-            },
-            {
-              "id": "captain-morgan",
-              "name": "Captain Morgan",
-              "price": 5,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "khukuri", "name": "Khukuri Rum", "price": 5.50, "featured": true, "tags": ["Nepali"] },
+            { "id": "captain-morgan", "name": "Captain Morgan", "price": 5.00, "featured": false, "tags": [] }
           ]
         },
         {
           "heading": null,
           "note": "Liquore & Others",
           "cards": [
-            {
-              "id": "licor-beirao",
-              "name": "Licor Beirão",
-              "price": 3.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "baileys",
-              "name": "Baileys Irish Cream",
-              "price": 3.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "tequila",
-              "name": "Tequila Sierra Shot",
-              "price": 2,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "aguardente",
-              "name": "Aguardente Shot",
-              "price": 1.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "crf",
-              "name": "CRF",
-              "price": 1.5,
-              "featured": false,
-              "tags": []
-            },
-            {
-              "id": "gordons",
-              "name": "Gordon's Gin & Tonic",
-              "price": 7.5,
-              "featured": false,
-              "tags": []
-            }
+            { "id": "licor-beirao", "name": "Licor Beirão", "price": 3.50, "featured": false, "tags": [] },
+            { "id": "baileys", "name": "Baileys Irish Cream", "price": 3.50, "featured": false, "tags": [] },
+            { "id": "tequila", "name": "Tequila Sierra Shot", "price": 2.00, "featured": false, "tags": [] },
+            { "id": "aguardente", "name": "Aguardente Shot", "price": 1.50, "featured": false, "tags": [] },
+            { "id": "crf", "name": "CRF", "price": 1.50, "featured": false, "tags": [] },
+            { "id": "gordons", "name": "Gordon's Gin & Tonic", "price": 7.50, "featured": false, "tags": [] }
           ]
         }
       ]
