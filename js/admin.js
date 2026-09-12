@@ -290,6 +290,13 @@ function buildFoodEditorCard(card, idx, section) {
         <span class="toggle-slider"></span>
       </label>
     </div>
+    <div class="toggle-row">
+      <span class="toggle-label" style="color:${card.soldOut ? '#e74c3c' : 'var(--text-dim)'}">Sold Out</span>
+      <label class="toggle">
+        <input type="checkbox" class="f-soldout" ${card.soldOut ? 'checked' : ''} />
+        <span class="toggle-slider" style="${card.soldOut ? 'background:#e74c3c' : ''}"></span>
+      </label>
+    </div>
     <div class="field">
       <label>Tags</label>
       <div class="tags-row">${tagChips}</div>
@@ -308,6 +315,12 @@ function buildFoodEditorCard(card, idx, section) {
     card.variant     = el.querySelector('.f-variant').value;
     card.image       = el.querySelector('.f-image').value;
     card.featured    = el.querySelector('.f-featured').checked;
+    card.soldOut     = el.querySelector('.f-soldout').checked;
+    // Update sold out label colour
+    const soldOutLabel = el.querySelector('.f-soldout').closest('.toggle-row').querySelector('.toggle-label');
+    const soldOutSlider = el.querySelector('.f-soldout').nextElementSibling;
+    soldOutLabel.style.color = card.soldOut ? '#e74c3c' : 'var(--text-dim)';
+    soldOutSlider.style.background = card.soldOut ? '#e74c3c' : '';
     el.querySelector('.editor-card-title').textContent = card.name;
     // Update image preview
     const imgEl = el.querySelector('.editor-card-img');

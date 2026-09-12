@@ -19,16 +19,20 @@
                        : card.variant === 'tall'      ? ' dish-card--tall'
                        : '';
     const featuredClass = card.featured ? ' featured' : '';
+    const soldOutClass  = card.soldOut  ? ' sold-out'  : '';
     const priceDisplay = formatPrice(card.price);
     const tagBadge = card.tags && card.tags.length
       ? `<span class="dish-tag-photo">${buildTag(card.tags[0])}</span>` : '';
     const qty = card.qty ? ` <span class="dish-qty">(${card.qty})</span>` : '';
+    const soldOutBadge = card.soldOut
+      ? `<span class="sold-out-badge">Sold Out</span>` : '';
 
     return `
-      <div class="dish-card${variantClass}${featuredClass}">
+      <div class="dish-card${variantClass}${featuredClass}${soldOutClass}">
         <div class="dish-photo">
           <img src="${card.image}" alt="${card.name}" loading="lazy" />
           <span class="dish-price-badge">${priceDisplay}</span>
+          ${soldOutBadge}
           ${tagBadge}
         </div>
         <div class="dish-body">
@@ -40,13 +44,14 @@
 
   function buildCompactCard(card) {
     const priceDisplay = formatPrice(card.price);
+    const soldOutClass = card.soldOut ? ' sold-out' : '';
     const tagBadge = card.tags && card.tags.length
       ? buildTag(card.tags[0]) : '';
     return `
-      <div class="dish-card compact">
+      <div class="dish-card compact${soldOutClass}">
         <div class="dish-body">
           <div><h3>${card.name}${tagBadge ? ` <span class="dish-tag inline">${card.tags[0]}</span>` : ''}</h3></div>
-          <span class="dish-price">${priceDisplay}</span>
+          ${card.soldOut ? `<span class="sold-out-badge-sm">Sold Out</span>` : `<span class="dish-price">${priceDisplay}</span>`}
         </div>
       </div>`;
   }

@@ -330,6 +330,47 @@ body.menu-page {
 
 .dish-tag.inline { margin-left: 6px; }
 
+/* ---- Sold Out ---- */
+.dish-card.sold-out {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.dish-card.sold-out:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(255,255,255,0.07);
+}
+
+.sold-out-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.3);
+  z-index: 3;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+.sold-out-badge-sm {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 /* Standalone price (compact cards) */
 .dish-price {
   font-family: var(--font-serif);
