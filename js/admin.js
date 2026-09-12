@@ -73,20 +73,31 @@ document.getElementById('logoutBtn').addEventListener('click', () => {
   location.reload();
 });
 
-// ---- Export JSON ----
+// ---- Save to GitHub ----
 
-document.getElementById('exportBtn').addEventListener('click', () => {
+document.getElementById('exportBtn').addEventListener('click', async () => {
   if (!menuData) return;
-  const blob = new Blob([JSON.stringify(menuData, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'menu-data.json';
-  a.click();
-  URL.revokeObjectURL(url);
-  hasChanges = false;
-  document.getElementById('unsavedDot').style.opacity = '0';
-  toast('✅ menu-data.json downloaded! Commit it to GitHub to go live.');
+  const btn = document.getElementById('exportBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Saving…';
+
+  try {
+    const res = await fetch('/api/save-menu', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: JSON.stringify(menuData, null, 2) })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Save failed');
+    hasChanges = false;
+    document.getElementById('unsavedDot').style.opacity = '0';
+    toast('✅ Menu saved! Live on website in ~30 seconds.');
+  } catch (err) {
+    toast('❌ Error: ' + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '💾 Save Menu';
+  }
 });
 
 // ---- Init ----
