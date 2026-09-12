@@ -16,7 +16,8 @@
           "image": "Pics/papad.png",
           "featured": false,
           "variant": "standard",
-          "tags": []
+          "tags": [],
+          "soldOut": true
         },
         {
           "id": "samosa",
