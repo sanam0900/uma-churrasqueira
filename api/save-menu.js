@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   const OWNER = 'sanam0900';
   const REPO  = 'uma-churrasqueira';
   const FILE  = 'menu-data.json';
-  const BRANCH = 'main';
+  const BRANCH = 'admin-panel';
 
   try {
     // Get current file SHA (needed to update an existing file)
