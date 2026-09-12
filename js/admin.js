@@ -1,225 +1,398 @@
 /* ============================================================
-   admin.js — Admin dashboard logic
-   Replace SCRIPT_URL and ADMIN_PASSWORD as needed
+   admin.js — Uma Churrasqueira Menu Admin Panel
    ============================================================ */
 
-const SCRIPT_URL    = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
-const ADMIN_PASSWORD = 'uma2026';  // Change this password!
+const ADMIN_PASSWORD = 'uma2026';
 
-// ---- Sample demo data (shown when no Script URL is configured) ----
-const DEMO_DATA = [
-  { row: 1, timestamp: '2026-09-07 14:22', name: 'Maria Santos', email: 'maria@email.com', phone: '+351 912 345 678', date: '2026-09-10', time: '20:00', guests: '4', notes: 'Anniversary dinner, please arrange flowers if possible', status: 'Pending', comment: '' },
-  { row: 2, timestamp: '2026-09-07 16:05', name: 'João Ferreira', email: 'joao@email.com', phone: '+351 934 567 890', date: '2026-09-11', time: '19:30', guests: '2', notes: '', status: 'Approved', comment: 'Confirmed! Table by the window reserved.' },
-  { row: 3, timestamp: '2026-09-08 09:14', name: 'Priya Sharma', email: 'priya@email.com', phone: '+351 967 890 123', date: '2026-09-08', time: '13:00', guests: '6', notes: 'One vegetarian guest', status: 'Pending', comment: '' },
-  { row: 4, timestamp: '2026-09-08 10:30', name: 'Carlos Lima', email: '', phone: '+351 921 000 111', date: '2026-09-09', time: '21:00', guests: '8+', notes: 'Corporate dinner', status: 'Rejected', comment: 'Unfortunately fully booked that evening. Please call us to reschedule.' },
-  { row: 5, timestamp: '2026-09-08 11:55', name: 'Ana Costa', email: 'ana@email.com', phone: '+351 916 222 333', date: '2026-09-14', time: '19:00', guests: '3', notes: '', status: 'Pending', comment: '' },
+const AVAILABLE_TAGS = [
+  'Nepali Classic', 'Best Seller', 'Popular', 'Best Value',
+  "Signature Dish", "Chef's Pick", 'Portuguese Classic', 'Nepali'
 ];
 
-let allReservations = [];
-let currentFilter   = 'all';
-let currentDate     = '';
-const isDemoMode    = SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const VARIANTS = ['standard', 'landscape', 'tall', 'compact'];
 
-// ---- AUTH ----
-const loginScreen = document.getElementById('loginScreen');
-const adminApp    = document.getElementById('adminApp');
-const loginBtn    = document.getElementById('loginBtn');
-const logoutBtn   = document.getElementById('logoutBtn');
-const pwInput     = document.getElementById('pwInput');
-const loginError  = document.getElementById('loginError');
+let menuData = null;
+let hasChanges = false;
+let currentSectionId = null;
 
-function checkSession() {
-  return sessionStorage.getItem('uc_admin') === 'true';
+// ---- Utils ----
+
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function toast(msg, duration = 3000) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('visible');
+  clearTimeout(el._timer);
+  el._timer = setTimeout(() => el.classList.remove('visible'), duration);
+}
+
+function markChanged() {
+  hasChanges = true;
+  document.getElementById('unsavedDot').style.opacity = '1';
+}
+
+function formatPrice(price) {
+  if (typeof price === 'string') return price;
+  return '€' + parseFloat(price).toFixed(2).replace('.00', '');
+}
+
+// ---- Login ----
+
+function checkLogin() {
+  return sessionStorage.getItem('uma_admin') === 'true';
 }
 
 function login() {
-  if (pwInput.value === ADMIN_PASSWORD) {
-    sessionStorage.setItem('uc_admin', 'true');
-    loginScreen.style.display = 'none';
-    adminApp.style.display = 'block';
-    loginError.style.display = 'none';
-    init();
+  const pw = document.getElementById('loginPw').value;
+  if (pw === ADMIN_PASSWORD) {
+    sessionStorage.setItem('uma_admin', 'true');
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminShell').classList.add('visible');
+    initAdmin();
   } else {
-    loginError.style.display = 'block';
-    pwInput.value = '';
-    pwInput.focus();
+    document.getElementById('loginError').classList.add('visible');
+    document.getElementById('loginPw').value = '';
+    document.getElementById('loginPw').focus();
   }
 }
 
-loginBtn.addEventListener('click', login);
-pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+document.getElementById('loginBtn').addEventListener('click', login);
+document.getElementById('loginPw').addEventListener('keydown', e => {
+  if (e.key === 'Enter') login();
+});
 
-logoutBtn.addEventListener('click', () => {
-  sessionStorage.removeItem('uc_admin');
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  sessionStorage.removeItem('uma_admin');
   location.reload();
 });
 
-if (checkSession()) {
-  loginScreen.style.display = 'none';
-  adminApp.style.display = 'block';
-  init();
-}
+// ---- Export JSON ----
 
-// ---- INIT ----
-function init() {
-  document.getElementById('adminDate').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+document.getElementById('exportBtn').addEventListener('click', () => {
+  if (!menuData) return;
+  const blob = new Blob([JSON.stringify(menuData, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'menu-data.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  hasChanges = false;
+  document.getElementById('unsavedDot').style.opacity = '0';
+  toast('✅ menu-data.json downloaded! Commit it to GitHub to go live.');
+});
 
-  if (!isDemoMode) {
-    document.getElementById('demoBanner').style.display = 'none';
-  }
+// ---- Init ----
 
-  setupFilters();
-  loadReservations();
-
-  document.getElementById('refreshBtn').addEventListener('click', loadReservations);
-}
-
-// ---- FILTERS ----
-function setupFilters() {
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentFilter = btn.dataset.filter;
-      renderTable();
-    });
-  });
-
-  document.getElementById('filterDate').addEventListener('change', e => {
-    currentDate = e.target.value;
-    renderTable();
-  });
-}
-
-// ---- LOAD ----
-async function loadReservations() {
-  const tbody = document.getElementById('resTableBody');
-  tbody.innerHTML = '<tr><td colspan="6" class="loading-state">Loading reservations...</td></tr>';
-
-  if (isDemoMode) {
-    allReservations = [...DEMO_DATA];
-    updateStats();
-    renderTable();
-    return;
-  }
-
+async function initAdmin() {
   try {
-    const res = await fetch(`${SCRIPT_URL}?action=list`);
-    const data = await res.json();
-    allReservations = data.reservations || [];
-    updateStats();
-    renderTable();
+    const res = await fetch('menu-data.json');
+    if (!res.ok) throw new Error('Failed to load menu-data.json');
+    menuData = await res.json();
+    buildSidebar();
+    // Open first section by default
+    if (menuData.sections.length > 0) {
+      openSection(menuData.sections[0].id);
+    }
   } catch (err) {
-    tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="es-icon">⚠️</div><p>Could not load reservations. Check your Apps Script URL.</p></td></tr>';
+    document.getElementById('adminMain').innerHTML =
+      `<p style="color:#e74c3c;margin-top:40px;">Error loading menu data: ${esc(err.message)}</p>`;
   }
 }
 
-// ---- STATS ----
-function updateStats() {
-  document.getElementById('statTotal').textContent    = allReservations.length;
-  document.getElementById('statPending').textContent  = allReservations.filter(r => r.status === 'Pending').length;
-  document.getElementById('statApproved').textContent = allReservations.filter(r => r.status === 'Approved').length;
-  document.getElementById('statRejected').textContent = allReservations.filter(r => r.status === 'Rejected').length;
+// ---- Sidebar ----
+
+function buildSidebar() {
+  const sidebar = document.getElementById('adminSidebar');
+  sidebar.innerHTML = '<p class="sidebar-label">Sections</p>';
+  menuData.sections.forEach(section => {
+    const count = section.cards
+      ? section.cards.length
+      : section.subgroups
+        ? section.subgroups.reduce((n, sg) => n + sg.cards.length, 0)
+        : 0;
+    const item = document.createElement('div');
+    item.className = 'sidebar-item';
+    item.dataset.id = section.id;
+    item.innerHTML = `
+      <span class="sidebar-icon">${section.icon}</span>
+      <span>${section.title}</span>
+      <span class="sidebar-count">${count}</span>`;
+    item.addEventListener('click', () => openSection(section.id));
+    sidebar.appendChild(item);
+  });
 }
 
-// ---- RENDER ----
-function renderTable() {
-  const tbody = document.getElementById('resTableBody');
+function updateSidebarCount(sectionId) {
+  const section = menuData.sections.find(s => s.id === sectionId);
+  if (!section) return;
+  const count = section.cards
+    ? section.cards.length
+    : section.subgroups
+      ? section.subgroups.reduce((n, sg) => n + sg.cards.length, 0)
+      : 0;
+  const item = document.querySelector(`.sidebar-item[data-id="${sectionId}"] .sidebar-count`);
+  if (item) item.textContent = count;
+}
 
-  let filtered = allReservations.filter(r => {
-    const statusMatch = currentFilter === 'all' || r.status === currentFilter;
-    const dateMatch   = !currentDate || r.date === currentDate;
-    return statusMatch && dateMatch;
+// ---- Open section ----
+
+function openSection(sectionId) {
+  currentSectionId = sectionId;
+  document.querySelectorAll('.sidebar-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.id === sectionId);
+  });
+  const section = menuData.sections.find(s => s.id === sectionId);
+  if (!section) return;
+
+  if (section.subgroups) {
+    renderDrinksSection(section);
+  } else {
+    renderFoodSection(section);
+  }
+}
+
+// ---- Food section ----
+
+function renderFoodSection(section) {
+  const main = document.getElementById('adminMain');
+  main.innerHTML = `
+    <h2 class="admin-section-title">${esc(section.icon)} ${esc(section.title)}</h2>
+    <p class="admin-section-note">${section.note ? esc(section.note) : 'No section note'}</p>
+    <div class="admin-actions-row">
+      <button class="btn-admin btn-teal btn-sm" id="addItemBtn">+ Add Item</button>
+    </div>
+    <div class="admin-cards-grid" id="cardsGrid"></div>`;
+
+  const grid = document.getElementById('cardsGrid');
+  section.cards.forEach((card, idx) => {
+    grid.appendChild(buildFoodEditorCard(card, idx, section));
   });
 
-  if (filtered.length === 0) {
-    tbody.innerHTML = `
-      <tr><td colspan="6">
-        <div class="empty-state">
-          <div class="es-icon">📋</div>
-          <p>No reservations found for this filter.</p>
-        </div>
-      </td></tr>`;
-    return;
-  }
+  document.getElementById('addItemBtn').addEventListener('click', () => {
+    const newCard = {
+      id: 'item-' + Date.now(),
+      name: 'New Item',
+      qty: '',
+      description: '',
+      price: 0,
+      image: '',
+      featured: false,
+      variant: 'standard',
+      tags: []
+    };
+    section.cards.push(newCard);
+    const newIdx = section.cards.length - 1;
+    const cardEl = buildFoodEditorCard(newCard, newIdx, section);
+    cardEl.classList.add('is-new');
+    grid.appendChild(cardEl);
+    cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    markChanged();
+    updateSidebarCount(section.id);
+  });
+}
 
-  tbody.innerHTML = filtered.map((r, i) => `
-    <tr id="row-${r.row}">
-      <td style="color:rgba(255,255,255,0.25);font-size:0.78rem;">${i + 1}</td>
-      <td>
-        <div class="res-name">${esc(r.name)}</div>
-        <div class="res-phone">${esc(r.phone)}${r.email ? ' · ' + esc(r.email) : ''}</div>
-        ${r.notes ? `<div class="res-notes">"${esc(r.notes)}"</div>` : ''}
-      </td>
-      <td>
-        <div>${formatDate(r.date)}</div>
-        <div style="color:rgba(255,255,255,0.4);font-size:0.82rem;">${esc(r.time)}</div>
-        <div style="color:rgba(255,255,255,0.25);font-size:0.72rem;margin-top:4px;">${esc(r.timestamp || '')}</div>
-      </td>
-      <td style="font-weight:700;color:var(--gold);">${esc(r.guests)}</td>
-      <td><span class="badge badge-${r.status.toLowerCase()}">${esc(r.status)}</span></td>
-      <td class="action-cell">
-        ${r.status === 'Pending' ? `
-          <textarea class="action-comment" id="comment-${r.row}" rows="2" placeholder="Optional message to guest..."></textarea>
-          <div class="action-btns">
-            <button class="approve-btn" onclick="updateRes(${r.row}, 'Approved')">✓ Approve</button>
-            <button class="reject-btn"  onclick="updateRes(${r.row}, 'Rejected')">✗ Reject</button>
-          </div>
-        ` : `
-          <span class="badge badge-${r.status.toLowerCase()}">${esc(r.status)}</span>
-          ${r.comment ? `<div class="admin-comment-display">"${esc(r.comment)}"</div>` : ''}
-        `}
-      </td>
-    </tr>
+function buildFoodEditorCard(card, idx, section) {
+  const el = document.createElement('div');
+  el.className = 'editor-card';
+  el.dataset.cardId = card.id;
+
+  const imgSrc = card.image || '';
+  const tagChips = AVAILABLE_TAGS.map(tag => `
+    <span class="tag-chip ${card.tags && card.tags.includes(tag) ? 'active' : ''}" data-tag="${esc(tag)}">${esc(tag)}</span>
   `).join('');
-}
 
-// ---- UPDATE ----
-async function updateRes(rowNum, newStatus) {
-  const commentEl = document.getElementById(`comment-${rowNum}`);
-  const comment   = commentEl ? commentEl.value.trim() : '';
+  const variantOpts = VARIANTS.map(v =>
+    `<option value="${v}" ${card.variant === v ? 'selected' : ''}>${v}</option>`
+  ).join('');
 
-  const approveBtn = document.querySelector(`#row-${rowNum} .approve-btn`);
-  const rejectBtn  = document.querySelector(`#row-${rowNum} .reject-btn`);
-  if (approveBtn) approveBtn.disabled = true;
-  if (rejectBtn)  rejectBtn.disabled = true;
+  el.innerHTML = `
+    <div class="editor-card-header">
+      ${imgSrc ? `<img class="editor-card-img" src="${esc(imgSrc)}" alt="${esc(card.name)}" onerror="this.style.display='none'" />` : `<div class="editor-card-img"></div>`}
+      <div class="editor-card-title" style="padding-left:12px;">${esc(card.name)}</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Name</label>
+        <input type="text" class="f-name" value="${esc(card.name)}" />
+      </div>
+      <div class="field">
+        <label>Qty (e.g. "10 uni.")</label>
+        <input type="text" class="f-qty" value="${esc(card.qty || '')}" />
+      </div>
+    </div>
+    <div class="field field-row single">
+      <label>Description</label>
+      <textarea class="f-desc">${esc(card.description || '')}</textarea>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Price (€)</label>
+        <input type="text" class="f-price price-input" value="${esc(String(card.price))}" />
+      </div>
+      <div class="field">
+        <label>Variant</label>
+        <select class="f-variant">${variantOpts}</select>
+      </div>
+    </div>
+    <div class="field field-row single">
+      <label>Image path (e.g. Pics/chicken.png)</label>
+      <input type="text" class="f-image" value="${esc(card.image || '')}" />
+    </div>
+    <div class="toggle-row">
+      <span class="toggle-label">Featured (gold border)</span>
+      <label class="toggle">
+        <input type="checkbox" class="f-featured" ${card.featured ? 'checked' : ''} />
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="field">
+      <label>Tags</label>
+      <div class="tags-row">${tagChips}</div>
+    </div>
+    <div class="editor-card-footer">
+      <button class="btn-admin btn-danger btn-sm del-btn">🗑 Delete</button>
+    </div>`;
 
-  // Update local state
-  const res = allReservations.find(r => r.row === rowNum);
-  if (res) { res.status = newStatus; res.comment = comment; }
-
-  if (isDemoMode) {
-    await new Promise(r => setTimeout(r, 600));
-    updateStats();
-    renderTable();
-    return;
+  // Wire up live edits
+  function sync() {
+    card.name        = el.querySelector('.f-name').value;
+    card.qty         = el.querySelector('.f-qty').value;
+    card.description = el.querySelector('.f-desc').value;
+    const rawPrice   = el.querySelector('.f-price').value.replace('€', '').trim();
+    card.price       = isNaN(parseFloat(rawPrice)) ? rawPrice : parseFloat(rawPrice);
+    card.variant     = el.querySelector('.f-variant').value;
+    card.image       = el.querySelector('.f-image').value;
+    card.featured    = el.querySelector('.f-featured').checked;
+    el.querySelector('.editor-card-title').textContent = card.name;
+    // Update image preview
+    const imgEl = el.querySelector('.editor-card-img');
+    if (imgEl && card.image) {
+      imgEl.src = card.image;
+      imgEl.style.display = '';
+    }
+    markChanged();
   }
 
-  try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'update', row: rowNum, status: newStatus, comment }),
+  el.querySelectorAll('input, select, textarea').forEach(input => {
+    input.addEventListener('input', sync);
+    input.addEventListener('change', sync);
+  });
+
+  // Tags
+  el.querySelectorAll('.tag-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag;
+      if (!card.tags) card.tags = [];
+      const i = card.tags.indexOf(tag);
+      if (i >= 0) {
+        card.tags.splice(i, 1);
+        chip.classList.remove('active');
+      } else {
+        card.tags.push(tag);
+        chip.classList.add('active');
+      }
+      markChanged();
     });
-    updateStats();
-    renderTable();
-  } catch (err) {
-    alert('Could not update. Please check your connection.');
-    if (approveBtn) approveBtn.disabled = false;
-    if (rejectBtn)  rejectBtn.disabled = false;
-  }
+  });
+
+  // Delete
+  el.querySelector('.del-btn').addEventListener('click', () => {
+    if (!confirm(`Delete "${card.name}"? This cannot be undone.`)) return;
+    const i = section.cards.indexOf(card);
+    if (i >= 0) section.cards.splice(i, 1);
+    el.remove();
+    markChanged();
+    updateSidebarCount(section.id);
+    toast(`Deleted "${card.name}"`);
+  });
+
+  return el;
 }
 
-// ---- UTILS ----
-function esc(str) {
-  if (!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+// ---- Drinks section ----
+
+function renderDrinksSection(section) {
+  const main = document.getElementById('adminMain');
+  main.innerHTML = `
+    <h2 class="admin-section-title">${esc(section.icon)} ${esc(section.title)}</h2>
+    <p class="admin-section-note">Edit drink names and prices below. Each group matches a subheading on the menu.</p>
+    <div id="drinksEditor"></div>`;
+
+  const container = document.getElementById('drinksEditor');
+
+  section.subgroups.forEach((sg, sgIdx) => {
+    const div = document.createElement('div');
+    div.className = 'drinks-admin-section';
+    const headingHTML = sg.heading
+      ? `<div class="drinks-admin-heading">${esc(sg.heading)}</div>` : '';
+    const noteHTML = sg.note
+      ? `<div class="drinks-admin-note">${esc(sg.note)}</div>` : '';
+
+    div.innerHTML = `${headingHTML}${noteHTML}`;
+
+    sg.cards.forEach((card, cIdx) => {
+      const row = document.createElement('div');
+      row.className = 'drink-row';
+
+      const priceVal = typeof card.price === 'string' ? card.price : card.price.toFixed(2);
+
+      row.innerHTML = `
+        <input type="text" class="drink-name-input" value="${esc(card.name)}" placeholder="Drink name" />
+        <input type="text" class="drink-price-input" value="${esc(priceVal)}" placeholder="e.g. 2.50" />
+        <button class="btn-admin btn-danger btn-sm drink-del-btn" title="Delete">✕</button>`;
+
+      row.querySelector('.drink-name-input').addEventListener('input', e => {
+        card.name = e.target.value;
+        markChanged();
+      });
+      row.querySelector('.drink-price-input').addEventListener('input', e => {
+        const raw = e.target.value.replace('€', '').trim();
+        card.price = isNaN(parseFloat(raw)) ? raw : parseFloat(raw);
+        markChanged();
+      });
+      row.querySelector('.drink-del-btn').addEventListener('click', () => {
+        if (!confirm(`Delete "${card.name}"?`)) return;
+        sg.cards.splice(cIdx, 1);
+        row.remove();
+        markChanged();
+        updateSidebarCount(section.id);
+        toast(`Deleted "${card.name}"`);
+      });
+
+      div.appendChild(row);
+    });
+
+    // Add drink to this subgroup
+    const addBtn = document.createElement('button');
+    addBtn.className = 'btn-admin btn-outline btn-sm';
+    addBtn.style.marginTop = '8px';
+    addBtn.textContent = '+ Add Drink';
+    addBtn.addEventListener('click', () => {
+      const newCard = { id: 'drink-' + Date.now(), name: '', price: 0, featured: false, tags: [] };
+      sg.cards.push(newCard);
+      // Re-render drinks section
+      renderDrinksSection(section);
+      markChanged();
+      updateSidebarCount(section.id);
+    });
+
+    div.appendChild(addBtn);
+    container.appendChild(div);
+  });
 }
 
-function formatDate(dateStr) {
-  if (!dateStr) return '';
-  try {
-    return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-GB', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
-  } catch { return dateStr; }
+// ---- Bootstrap ----
+
+if (checkLogin()) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminShell').classList.add('visible');
+  initAdmin();
 }
