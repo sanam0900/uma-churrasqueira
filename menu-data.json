@@ -17,7 +17,7 @@
           "featured": false,
           "variant": "standard",
           "tags": [],
-          "soldOut": true
+          "soldOut": false
         },
         {
           "id": "samosa",
