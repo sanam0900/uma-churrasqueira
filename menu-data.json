@@ -90,20 +90,6 @@
           "tags": [
             "Nepali Classic"
           ]
-        },
-        {
-          "id": "item-1789208881797",
-          "name": "Veg Momo",
-          "qty": "6",
-          "description": "Veg Momo",
-          "price": 8,
-          "image": "Pics/https_uma-churrasqueira_vercel_app.png",
-          "featured": false,
-          "variant": "standard",
-          "tags": [
-            "Chef's Pick"
-          ],
-          "soldOut": false
         }
       ]
     },
