@@ -254,8 +254,13 @@ function buildFoodEditorCard(card, idx, section) {
       </div>
     </div>
     <div class="field field-row single">
-      <label>Image path (e.g. Pics/chicken.png)</label>
-      <input type="text" class="f-image" value="${esc(card.image || '')}" />
+      <label>Image</label>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input type="text" class="f-image" value="${esc(card.image || '')}" placeholder="Pics/photo.png" style="flex:1;" />
+        <button class="btn-admin btn-outline btn-sm upload-btn" type="button">📷 Upload</button>
+        <input type="file" class="upload-input" accept="image/*" style="display:none;" />
+      </div>
+      <div class="upload-status" style="font-size:0.75rem;color:var(--text-dim);margin-top:4px;"></div>
     </div>
     <div class="toggle-row">
       <span class="toggle-label">Featured (gold border)</span>
@@ -292,7 +297,7 @@ function buildFoodEditorCard(card, idx, section) {
     markChanged();
   }
 
-  el.querySelectorAll('input, select, textarea').forEach(input => {
+  el.querySelectorAll('input:not(.upload-input), select, textarea').forEach(input => {
     input.addEventListener('input', sync);
     input.addEventListener('change', sync);
   });
@@ -323,6 +328,55 @@ function buildFoodEditorCard(card, idx, section) {
     markChanged();
     updateSidebarCount(section.id);
     toast(`Deleted "${card.name}"`);
+  });
+
+  // Image upload
+  const uploadBtn = el.querySelector('.upload-btn');
+  const uploadInput = el.querySelector('.upload-input');
+  const uploadStatus = el.querySelector('.upload-status');
+
+  uploadBtn.addEventListener('click', () => uploadInput.click());
+
+  uploadInput.addEventListener('change', async () => {
+    const file = uploadInput.files[0];
+    if (!file) return;
+
+    uploadBtn.disabled = true;
+    uploadBtn.textContent = '⏳ Uploading…';
+    uploadStatus.textContent = '';
+
+    try {
+      const base64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      const res = await fetch('/api/upload-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename: file.name, base64 })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+
+      // Update image path field and card data
+      card.image = data.path;
+      el.querySelector('.f-image').value = data.path;
+      const imgEl = el.querySelector('.editor-card-img');
+      if (imgEl) { imgEl.src = data.path; imgEl.style.display = ''; }
+      uploadStatus.style.color = 'var(--gold)';
+      uploadStatus.textContent = '✅ Uploaded! Click Save Menu to go live.';
+      markChanged();
+    } catch (err) {
+      uploadStatus.style.color = '#e74c3c';
+      uploadStatus.textContent = '❌ ' + err.message;
+    } finally {
+      uploadBtn.disabled = false;
+      uploadBtn.textContent = '📷 Upload';
+      uploadInput.value = '';
+    }
   });
 
   return el;
