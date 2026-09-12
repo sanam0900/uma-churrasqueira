@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
   const OWNER  = 'sanam0900';
   const REPO   = 'uma-churrasqueira';
-  const BRANCH = 'admin-panel';
+  const BRANCH = 'main';
 
   try {
     // Check if file already exists (need its SHA to overwrite)
